@@ -1,0 +1,445 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block content %}
+<!-- {% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %} -->
+<div id="incoming-form-app" :class="{'of-dark': dark}" class="of-wrap container-fluid">
+
+  <!-- HEADER -->
+    <div class="of-head">
+      <div class="of-head-left">
+        <h2 class="of-head-title">Aumenta Karta Tama</h2>
+        <div class="of-head-meta">
+          <span class="of-dot"></span>
+          <span id="of-now" class="of-subtle"></span>
+        </div>
+      </div>
+
+      <div class="of-head-right">
+        <button class="of-iconbtn of-theme" @click="dark = !dark" :title="dark ? 'Light mode' : 'Dark mode'">
+          <!-- sun/moon -->
+          <svg v-if="dark" width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 1v2M12 21v2M4.22 4.22 5.64 5.64M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78 5.64 18.36M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3c.2 0 .4.01.59.03A7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <span class="of-vsep" aria-hidden="true"></span>
+        {% url 'admin_home' as dash %}
+        {% url 'admin_home' as dash_url %}
+        <a class="btn of-btn-ghost" href="{% firstof back_url dash_url %}">Fila ba Dashboard</a>
+      </div>
+    </div>
+
+  <!-- Form Card -->
+  <form method="post" enctype="multipart/form-data" class="of-form">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <!-- Informasaun Oríjém -->
+    <div class="of-section">
+      <div class="of-section-head">
+        <div class="of-icopill of-c-blue">
+          <svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="of-title">Informasaun Oríjém</div>
+          <div class="of-desc">Detalle dadaun kona-ba karta ne'ebé simu.</div>
+        </div>
+      </div>
+
+      <!-- received_via -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.received_via.id_for_label }}">
+          <span class="fi-ico of-c-teal">
+            <svg viewBox="0 0 24 24"><path d="M3 8l9 6 9-6M5 19h14" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.received_via.label }}{% if form.received_via.field.required %}<span class="req">*</span>{% endif %}
+        </label>
+        {{ form.received_via }}
+        {% if form.received_via.errors %}<div class="fi-err">{{ form.received_via.errors|striptags }}</div>{% endif %}
+      </div>
+
+      <!-- origin -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.origin.id_for_label }}">
+          <span class="fi-ico of-c-indigo">
+            <svg viewBox="0 0 24 24"><path d="M3 21h18M6 21V8h12v13M9 21v-6h6v6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.origin.label }}{% if form.origin.field.required %}<span class="req">*</span>{% endif %}
+        </label>
+        {{ form.origin }}
+        {% if form.origin.errors %}<div class="fi-err">{{ form.origin.errors|striptags }}</div>{% endif %}
+      </div>
+
+      <!-- origin_number + origin_date -->
+      <div class="fi-grid">
+        <div class="fi">
+          <label class="fi-label" for="{{ form.origin_number.id_for_label }}">
+            <span class="fi-ico of-c-amber">
+              <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </span>
+            {{ form.origin_number.label }}{% if form.origin_number.field.required %}<span class="req">*</span>{% endif %}
+          </label>
+          {{ form.origin_number }}
+          {% if form.origin_number.errors %}<div class="fi-err">{{ form.origin_number.errors|striptags }}</div>{% endif %}
+        </div>
+        <div class="fi">
+          <label class="fi-label" for="{{ form.origin_date.id_for_label }}">
+            <span class="fi-ico of-c-violet">
+              <svg viewBox="0 0 24 24"><path d="M8 2v3M16 2v3M3 9h18M5 7h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </span>
+            {{ form.origin_date.label }}{% if form.origin_date.field.required %}<span class="req">*</span>{% endif %}
+          </label>
+          <div class="fi-icon-input">
+            {{ form.origin_date }}
+            <span class="fi-input-ico">
+              <svg viewBox="0 0 24 24"><path d="M8 2v3M16 2v3M3 9h18" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+            </span>
+          </div>
+          {% if form.origin_date.errors %}<div class="fi-err">{{ form.origin_date.errors|striptags }}</div>{% endif %}
+        </div>
+      </div>
+
+      <!-- subject -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.subject.id_for_label }}">
+          <span class="fi-ico of-c-pink">
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h12M4 17h8" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.subject.label }}{% if form.subject.field.required %}<span class="req">*</span>{% endif %}
+          <span class="fi-note" v-text="subjectCount + ' chars'"></span>
+        </label>
+        {{ form.subject }}
+        {% if form.subject.errors %}<div class="fi-err">{{ form.subject.errors|striptags }}</div>{% endif %}
+      </div>
+
+      <!-- priority -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.priority.id_for_label }}">
+          <span class="fi-ico of-c-green">
+            <svg viewBox="0 0 24 24"><path d="M5 21V4l7 3 7-3v17" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.priority.label }}{% if form.priority.field.required %}<span class="req">*</span>{% endif %}
+          <span class="chip" :data-variant="priorityChip.variant" v-text="priorityChip.label"></span>
+        </label>
+        {{ form.priority }}
+        {% if form.priority.errors %}<div class="fi-err">{{ form.priority.errors|striptags }}</div>{% endif %}
+      </div>
+    </div>
+
+    <!-- Kelompok: Dokumentu & Anexu -->
+    <div class="of-section">
+      <div class="of-section-head">
+        <div class="of-icopill of-c-amber">
+          <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8Z" stroke="white" stroke-width="2" fill="none"/><path d="M14 2v6h6" stroke="white" stroke-width="2" fill="none"/></svg>
+        </div>
+        <div>
+          <div class="of-title">Dokumentu & Anexu</div>
+          <div class="of-desc">Upload scan PDF no hodi hili anexu relevante.</div>
+        </div>
+      </div>
+
+      <!-- scan_pdf -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.scan_pdf.id_for_label }}">
+          <span class="fi-ico of-c-red">
+            <svg viewBox="0 0 24 24"><path d="M12 3v18M6 7h4M6 12h4M6 17h4M14 7h4M14 12h4M14 17h4" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.scan_pdf.label }}{% if form.scan_pdf.field.required %}<span class="req">*</span>{% endif %}
+          <span class="fi-note" v-text="pdfName || 'PDF ≤ 20MB'"></span>
+        </label>
+
+        <div class="dropbox" @dragover.prevent class="dropbox"
+             @drop.prevent="onDropPdf($event, '{{ form.scan_pdf.auto_id }}')"
+             @click="focusRealInput('{{ form.scan_pdf.auto_id }}')">
+          <div class="dropbox-ico">
+            <svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 20h16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </div>
+          <div>Rasta no soe file PDF iha ne'e ka klik atu hili</div>
+        </div>
+
+        <div class="hidden-file">
+          {{ form.scan_pdf }}
+        </div>
+        {% if form.scan_pdf.help_text %}<small class="fi-hint">{{ form.scan_pdf.help_text }}</small>{% endif %}
+        {% if form.scan_pdf.errors %}<div class="fi-err">{{ form.scan_pdf.errors|striptags }}</div>{% endif %}
+      </div>
+
+      <!-- attachments -->
+      <div class="fi">
+        <label class="fi-label" for="{{ form.attachments.id_for_label }}">
+          <span class="fi-ico of-c-slate">
+            <svg viewBox="0 0 24 24"><path d="M8 17l7-7a3 3 0 1 1 4 4l-8 8a5 5 0 0 1-7-7l9-9" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.attachments.label }}
+          <span class="fi-note" v-text="attachmentsCount"></span>
+        </label>
+        {{ form.attachments }}
+        {% if form.attachments.errors %}<div class="fi-err">{{ form.attachments.errors|striptags }}</div>{% endif %}
+      </div>
+    </div>
+
+    <!-- Kelompok: Klasifikasaun -->
+    <div class="of-section">
+      <div class="of-section-head">
+        <div class="of-icopill of-c-teal">
+          <svg viewBox="0 0 24 24"><path d="M3 7h18M3 12h12M3 17h6" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <div class="of-title">Klasifikasaun</div>
+          <div class="of-desc">Hili tag/klasifikasaun relevante (multiplu).</div>
+        </div>
+      </div>
+      <div class="fi">
+        <label class="fi-label" for="{{ form.classification_tags.id_for_label }}">
+          <span class="fi-ico of-c-purple">
+            <svg viewBox="0 0 24 24"><path d="M20 12 12 4H6v6l8 8 6-6Z" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+          </span>
+          {{ form.classification_tags.label }}
+          <span class="fi-note" v-text="classTagsCount"></span>
+        </label>
+        {{ form.classification_tags }}
+        {% if form.classification_tags.errors %}<div class="fi-err">{{ form.classification_tags.errors|striptags }}</div>{% endif %}
+      </div>
+    </div>
+
+    <!-- Sticky Footer Actions -->
+    <div class="of-actions">
+      <button type="submit" class="btn of-btn-primary">
+        <svg width="18" height="18" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" stroke="white" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+        Rai (Save)
+      </button>
+      <a class="btn of-btn-ghost" href="{{ back_url|default:dash }}">Kansela</a>
+    </div>
+  </form>
+</div>
+
+<!-- ================== STYLE (inline) ================== -->
+<style>
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb; --ring:#93c5fd;
+  --teal:#14b8a6; --amber:#f59e0b; --green:#22c55e; --blue:#3b82f6;
+  --violet:#8b5cf6; --indigo:#6366f1; --pink:#ec4899; --slate:#94a3b8; --purple:#a855f7; --red:#ef4444;
+}
+.of-dark{ --bg:#0b1221; --card:#0f172a; --text:#e5edf8; --muted:#9ab0d1; --border:#1f2937; --ring:#3b82f6; }
+.of-wrap{color:var(--text);}
+.of-subtle{color:var(--muted)}
+.of-dot{width:6px;height:6px;border-radius:50%;background:var(--ring);display:inline-block}
+#of-now{opacity:.9}
+
+.of-iconbtn{border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px}
+.of-iconbtn:hover{border-color:var(--ring)}
+.of-btn-ghost{border:1px solid var(--border); background:transparent}
+.of-btn-ghost:hover{background:rgba(2,6,23,.05)}
+.of-btn-primary{background:var(--blue); color:#fff; border:none}
+.of-btn-primary:hover{filter:brightness(0.95)}
+
+.of-form{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:18px; position:relative}
+.of-section{padding:12px 6px; border-top:1px dashed var(--border)}
+.of-section:first-child{border-top:none}
+.of-section-head{display:flex; align-items:center; gap:12px; margin-bottom:8px}
+.of-title{font-weight:700}
+.of-desc{color:var(--muted); font-size:.95rem}
+.of-icopill{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; color:#fff}
+.of-icopill svg{width:20px; height:20px}
+.of-c-blue{background:linear-gradient(150deg, #60a5fa, #3b82f6)}
+.of-c-teal{background:linear-gradient(150deg, #2dd4bf, #14b8a6)}
+.of-c-indigo{background:linear-gradient(150deg, #818cf8, #6366f1)}
+.of-c-amber{background:linear-gradient(150deg, #fbbf24, #f59e0b)}
+.of-c-violet{background:linear-gradient(150deg, #a78bfa, #8b5cf6)}
+.of-c-pink{background:linear-gradient(150deg, #f472b6, #ec4899)}
+.of-c-green{background:linear-gradient(150deg, #34d399, #22c55e)}
+.of-c-slate{background:linear-gradient(150deg, #cbd5e1, #94a3b8); color:#0f172a}
+.of-c-purple{background:linear-gradient(150deg, #d8b4fe, #a855f7)}
+.of-c-red{background:linear-gradient(150deg, #fca5a5, #ef4444)}
+
+.of-head{
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:24px; margin-bottom:16px;
+}
+.of-head-left{ display:flex; flex-direction:column; }
+.of-head-title{ margin:0; line-height:1.2; }
+.of-head-meta{ display:flex; align-items:center; gap:8px; margin-top:4px; }
+
+.of-head-right{ display:flex; align-items:center; gap:18px; }
+.of-theme{ flex:0 0 auto; }
+.of-vsep{ width:1px; height:32px; background:var(--border); border-radius:1px; }
+
+@media (max-width: 768px){
+  .of-head{ flex-direction:column; gap:10px; }
+  .of-vsep{ display:none; }
+}
+
+.fi{margin:10px 0}
+.fi-grid{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+@media (max-width: 992px){ .fi-grid{grid-template-columns: 1fr;} }
+.fi-label{display:flex; align-items:center; gap:10px; font-weight:600; margin-bottom:6px}
+.fi-ico{display:grid; place-items:center; width:28px; height:28px; border-radius:10px}
+.fi-ico svg{width:16px; height:16px; stroke:white; fill:none; stroke-width:2}
+.req{color:#ef4444; margin-left:4px}
+.fi-note{margin-left:8px; font-weight:500; color:var(--muted); font-size:.9rem}
+
+.of-form input[type="text"],
+.of-form input[type="date"],
+.of-form input[type="file"],
+.of-form select,
+.of-form textarea{
+  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:transparent; color:var(--text);
+}
+.of-form textarea{min-height:120px}
+.of-form select[multiple]{min-height:140px}
+.of-form input:focus, .of-form select:focus, .of-form textarea:focus{
+  border-color:var(--ring); box-shadow:0 0 0 3px rgba(59,130,246,.15); outline:0;
+}
+.fi-err{margin-top:6px; color:#b91c1c; font-weight:600}
+.errorlist{list-style:none; padding:0; margin:.5rem 0; color:#b91c1c}
+.fi-hint{display:block; margin-top:6px; color:var(--muted)}
+
+.fi-icon-input{position:relative}
+.fi-input-ico { 
+  position:absolute; right:10px; top:50%;
+  transform:translateY(-50%); color:var(--muted);
+  pointer-events: none;
+}
+.fi-input-ico svg{width:18px; height:18px}
+
+.dropbox{
+  border:1.5px dashed var(--border); border-radius:12px; padding:18px; text-align:center; cursor:pointer;
+  background:linear-gradient(180deg, rgba(148,163,184,.08), transparent);
+  display:grid; place-items:center; gap:6px; color:var(--muted)
+}
+.dropbox:hover{border-color:var(--ring)}
+.dropbox-ico svg{width:22px; height:22px}
+
+.hidden-file input[type="file"]{width:0.1px; height:0.1px; opacity:0; position:absolute; z-index:-1}
+
+.chip{
+  display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:.8rem; font-weight:600; margin-left:6px; border:1px solid transparent;
+}
+.chip[data-variant="B"]{background:rgba(148,163,184,.18); color:#1f2937; border-color:rgba(148,163,184,.35)}
+.chip[data-variant="U"]{background:rgba(245,158,11,.12); color:#92400e; border-color:rgba(245,158,11,.35)}
+.chip[data-variant="K"]{background:rgba(239,68,68,.12); color:#991b1b; border-color:rgba(239,68,68,.35)}
+
+.of-actions{
+  position:sticky; bottom:8px; display:flex; gap:10px; justify-content:flex-end; padding-top:14px; margin-top:18px; background:linear-gradient(180deg, transparent, var(--bg) 45%);
+}
+</style>
+
+<!-- ================== SCRIPT (inline) ================== -->
+<script>
+  /* Tanggal & jam Tetun, aman DOMContentLoaded + interval */
+  (function () {
+    const TETUN_DAYS = ["Domingu","Segunda","Tersa","Kuarta","Kinta","Sesta","Sabadu"];
+    const TETUN_MONTHS = ["Janeiru","Fevereiru","Marsu","Abril","Maiu","Junyu","Julhu","Agostu","Setembru","Outubru","Novembru","Dezembru"];
+  
+    function fmtTetun(d = new Date()) {
+      const dayName   = TETUN_DAYS[d.getDay()];
+      const dd        = String(d.getDate()).padStart(2, "0");
+      const monthName = TETUN_MONTHS[d.getMonth()];
+      const yyyy      = d.getFullYear();
+  
+      const time = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" })
+                .format(d)
+                .replace(":", "."); 
+  
+      return `${dayName}, ${dd} ${monthName} ${yyyy} ,${time}`;
+    }
+  
+    function renderTetunNow() {
+      const el = document.getElementById("of-now");
+      if (el) el.textContent = fmtTetun();
+    }
+  
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderTetunNow);
+    } else {
+      renderTetunNow();
+    }
+    setInterval(renderTetunNow, 30000);
+  })();
+  </script>  
+
+<script src="https://unpkg.com/vue@3.4.29/dist/vue.global.prod.js"></script>
+<script>
+const app = Vue.createApp({
+  data(){ return {
+    dark:false,
+    subjectCount: 0,
+    pdfName: '',
+    attachmentsCount: '',
+    classTagsCount: '',
+    priorityChip: {label:'', variant:'B'}
+  }},
+  mounted(){
+    // theme
+    this.dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+    // subject char counter
+    const subj = document.getElementById('{{ form.subject.auto_id }}');
+    if(subj){
+      const update = ()=> this.subjectCount = (subj.value||'').length;
+      subj.addEventListener('input', update); update();
+    }
+
+    // pdf file name
+    const pdf = document.getElementById('{{ form.scan_pdf.auto_id }}');
+    if(pdf){
+      pdf.addEventListener('change', ()=> this.pdfName = pdf.files?.[0]?.name || '');
+    }
+
+    // counts for multis
+    const att = document.getElementById('{{ form.attachments.auto_id }}');
+    const tag = document.getElementById('{{ form.classification_tags.auto_id }}');
+    const bindCount = (el, setter) => {
+      if(!el) return;
+      const fn = ()=> {
+        const n = Array.from(el.options||[]).filter(o=>o.selected).length;
+        setter(n ? `${n} selected` : '0 selected');
+      };
+      el.addEventListener('change', fn); fn();
+    };
+    bindCount(att, (v)=> this.attachmentsCount=v);
+    bindCount(tag, (v)=> this.classTagsCount=v);
+
+    // priority chip
+    const pr = document.getElementById('{{ form.priority.auto_id|default_if_none:"" }}');
+      const setChip = () => {
+        if (!pr) return;
+        const val  = (pr.value || '').toString().toUpperCase();                  // value apa pun
+        const text = pr.options[pr.selectedIndex]?.text?.trim() || val || 'Básiku'; // label tampil
+        // dukung beberapa kode umum; selain itu fallback ke varian "B"
+        const map = {
+          'B': { label: text, variant: 'B' },   // Básiku / Normal
+          'N': { label: text, variant: 'B' },   // kalau pakai 'N' utk Normal
+          'U': { label: text, variant: 'U' },   // Urjente
+          'H': { label: text, variant: 'U' },   // High (jika ada)
+          'K': { label: text, variant: 'K' },   // Kritiku
+        };
+        this.priorityChip = map[val] || { label: text, variant: 'B' };
+      };
+      if (pr) {
+        pr.addEventListener('change', setChip);
+        this.$nextTick(setChip); // inisialisasi awal
+      }
+  },
+  methods:{
+    onDropPdf(e, inputId){
+      const f = e.dataTransfer.files?.[0];
+      if(!f) return;
+      if(f.type !== 'application/pdf'){ alert('Favor hatama file PDF.'); return; }
+      const input = document.getElementById(inputId);
+      const dt = new DataTransfer(); dt.items.add(f);
+      input.files = dt.files; this.pdfName = f.name;
+    },
+    focusRealInput(inputId){
+      document.getElementById(inputId)?.click();
+    }
+  }
+});
+app.mount('#incoming-form-app');
+</script>
+{% endblock %}
+

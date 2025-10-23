@@ -1,0 +1,20 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{# 1) Tambah kelas ke <body> lewat block bodyclass - tidak menghasilkan teks #}
+{% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %}
+
+{# 2) Pastikan CSS kustom termuat #}
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_surat.css' %}">
+{% endblock %}
+
+{# 3) (opsional) judul dan konten dashboard kamu #}
+{% block content_title %}Ofisiu Gabinete{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    {# ... kartu & tabel dashboard kamu ... #}
+  </div>
+{% endblock %}

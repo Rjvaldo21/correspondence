@@ -1,0 +1,5 @@
+{% extends "jazzmin/change_form.html" %}  
+{% block object-tools-items %}
+  <li><a class="btn btn-outline-secondary" href="{% url 'admin_home' %}">Fila ba Painel</a></li>
+  {{ block.super }}
+{% endblock %}

@@ -1,0 +1,304 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"POT-Creation-Date: 2025-03-19 11:30-0500\n"
+"PO-Revision-Date: 2025-10-21 00:00+0000\n"
+"Last-Translator: Sistema Ofisiu\n"
+"Language-Team: Tetun\n"
+"Language: tet\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, javascript-format
+msgid "Available %s"
+msgstr "%s disponivel"
+
+#, javascript-format
+msgid ""
+"Choose %s by selecting them and then select the \"Choose\" arrow button."
+msgstr ""
+"Hili %s hodi hili sira molok klik botãu seti \"Choose\"."
+
+#, javascript-format
+msgid "Type into this box to filter down the list of available %s."
+msgstr "Hakerek iha kahon ida-ne'e atu filtra lista %s disponivel."
+
+msgid "Filter"
+msgstr "Filtra"
+
+#, javascript-format
+msgid "Choose all %s"
+msgstr "Hili hotu %s"
+
+#, javascript-format
+msgid "Choose selected %s"
+msgstr "Hili %s ne'ebé hili"
+
+#, javascript-format
+msgid "Remove selected %s"
+msgstr "Hasai %s ne'ebé hili"
+
+#, javascript-format
+msgid "Chosen %s"
+msgstr "%s ne'ebé hili"
+
+#, javascript-format
+msgid ""
+"Remove %s by selecting them and then select the \"Remove\" arrow button."
+msgstr ""
+"Hasai %s hodi hili sira, depois klik botãu seti \"Remove\"."
+
+#, javascript-format
+msgid "Type into this box to filter down the list of selected %s."
+msgstr "Hakerek iha kahon ida-ne'e atu filtra lista %s ne'ebé hili."
+
+msgid "(click to clear)"
+msgstr "(klik atu hamoos)"
+
+#, javascript-format
+msgid "Remove all %s"
+msgstr "Hasai hotu %s"
+
+#, javascript-format
+msgid "%s selected option not visible"
+msgid_plural "%s selected options not visible"
+msgstr[0] "%s opsaun ne'ebé hili la hatudu"
+msgstr[1] "%s opsaun sira ne'ebé hili la hatudu"
+
+#, javascript-format
+msgid "%(sel)s of %(cnt)s selected"
+msgid_plural "%(sel)s of %(cnt)s selected"
+msgstr[0] "%(sel)s husi %(cnt)s hili"
+msgstr[1] "%(sel)s husi %(cnt)s hili"
+
+msgid ""
+"You have unsaved changes on individual editable fields. If you run an "
+"action, your unsaved changes will be lost."
+msgstr ""
+"Ita iha troka sira iha kampu editavel ne'ebé seidauk salva. Se ita halo "
+"asaun ida, troka sira ne'ebé seidauk salva sei lakon."
+
+msgid ""
+"You have selected an action, but you havent saved your changes to individual "
+"fields yet. Please click OK to save. Youll need to re-run the action."
+msgstr ""
+"Ita hili ona asaun ida, maibé seidauk salva troka sira iha kampu kada-idak. "
+"Favor klik OK atu salva. Depois ita tenke halo fali asaun ne'e."
+
+msgid ""
+"You have selected an action, and you havent made any changes on individual "
+"fields. Youre probably looking for the Go button rather than the Save button."
+msgstr ""
+"Ita hili ona asaun ida, no seidauk halo troka buat ida iha kampu kada-idak. "
+"Karik ita buka botãu Go, la'ós botãu Salva."
+
+msgid "Now"
+msgstr "Agora"
+
+msgid "Midnight"
+msgstr "Meia-noite"
+
+msgid "6 a.m."
+msgstr "6 dader"
+
+msgid "Noon"
+msgstr "Meio-dia"
+
+msgid "6 p.m."
+msgstr "6 lokraik"
+
+#, javascript-format
+msgid "Note: You are %s hour ahead of server time."
+msgid_plural "Note: You are %s hours ahead of server time."
+msgstr[0] "Nota: Ita nia tempu liu ba oin husi tempu servidor %s oras."
+msgstr[1] "Nota: Ita nia tempu liu ba oin husi tempu servidor %s oras."
+
+#, javascript-format
+msgid "Note: You are %s hour behind server time."
+msgid_plural "Note: You are %s hours behind server time."
+msgstr[0] "Nota: Ita nia tempu mai kraik liu husi tempu servidor %s oras."
+msgstr[1] "Nota: Ita nia tempu mai kraik liu husi tempu servidor %s oras."
+
+msgid "Choose a Time"
+msgstr "Hili Oras"
+
+msgid "Choose a time"
+msgstr "Hili oras"
+
+msgid "Cancel"
+msgstr "Kansela"
+
+msgid "Today"
+msgstr "Ohin"
+
+msgid "Choose a Date"
+msgstr "Hili Data"
+
+msgid "Yesterday"
+msgstr "Horiseik"
+
+msgid "Tomorrow"
+msgstr "Aban"
+
+msgid "January"
+msgstr "Janeiru"
+
+msgid "February"
+msgstr "Fevreiru"
+
+msgid "March"
+msgstr "Marsu"
+
+msgid "April"
+msgstr "Abril"
+
+msgid "May"
+msgstr "Maiu"
+
+msgid "June"
+msgstr "Junu"
+
+msgid "July"
+msgstr "Jullu"
+
+msgid "August"
+msgstr "Agostu"
+
+msgid "September"
+msgstr "Setembru"
+
+msgid "October"
+msgstr "Outubru"
+
+msgid "November"
+msgstr "Novembru"
+
+msgid "December"
+msgstr "Dezembru"
+
+msgctxt "abbrev. month January"
+msgid "Jan"
+msgstr "Jan"
+
+msgctxt "abbrev. month February"
+msgid "Feb"
+msgstr "Fev"
+
+msgctxt "abbrev. month March"
+msgid "Mar"
+msgstr "Mar"
+
+msgctxt "abbrev. month April"
+msgid "Apr"
+msgstr "Abr"
+
+msgctxt "abbrev. month May"
+msgid "May"
+msgstr "Mai"
+
+msgctxt "abbrev. month June"
+msgid "Jun"
+msgstr "Jun"
+
+msgctxt "abbrev. month July"
+msgid "Jul"
+msgstr "Jul"
+
+msgctxt "abbrev. month August"
+msgid "Aug"
+msgstr "Ago"
+
+msgctxt "abbrev. month September"
+msgid "Sep"
+msgstr "Set"
+
+msgctxt "abbrev. month October"
+msgid "Oct"
+msgstr "Out"
+
+msgctxt "abbrev. month November"
+msgid "Nov"
+msgstr "Nov"
+
+msgctxt "abbrev. month December"
+msgid "Dec"
+msgstr "Dez"
+
+msgid "Sunday"
+msgstr "Domingu"
+
+msgid "Monday"
+msgstr "Segunda"
+
+msgid "Tuesday"
+msgstr "Tersa"
+
+msgid "Wednesday"
+msgstr "Kuarta"
+
+msgid "Thursday"
+msgstr "Kinta"
+
+msgid "Friday"
+msgstr "Sesta"
+
+msgid "Saturday"
+msgstr "Sabadu"
+
+msgctxt "abbrev. day Sunday"
+msgid "Sun"
+msgstr "Dom"
+
+msgctxt "abbrev. day Monday"
+msgid "Mon"
+msgstr "Seg"
+
+msgctxt "abbrev. day Tuesday"
+msgid "Tue"
+msgstr "Ter"
+
+msgctxt "abbrev. day Wednesday"
+msgid "Wed"
+msgstr "Kua"
+
+msgctxt "abbrev. day Thursday"
+msgid "Thur"
+msgstr "Kin"
+
+msgctxt "abbrev. day Friday"
+msgid "Fri"
+msgstr "Ses"
+
+msgctxt "abbrev. day Saturday"
+msgid "Sat"
+msgstr "Sab"
+
+msgctxt "one letter Sunday"
+msgid "S"
+msgstr "D"
+
+msgctxt "one letter Monday"
+msgid "M"
+msgstr "S"
+
+msgctxt "one letter Tuesday"
+msgid "T"
+msgstr "T"
+
+msgctxt "one letter Wednesday"
+msgid "W"
+msgstr "K"
+
+msgctxt "one letter Thursday"
+msgid "T"
+msgstr "K"
+
+msgctxt "one letter Friday"
+msgid "F"
+msgstr "S"
+
+msgctxt "one letter Saturday"
+msgid "S"
+msgstr "S"

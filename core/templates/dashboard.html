@@ -1,0 +1,449 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block content %}
+<!-- {% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %} -->
+<div id="of-dashboard" :class="{'of-dark': dark}" class="of-wrap container-fluid">
+
+  <!-- HEADER / ACTIONS -->
+  <div class="of-head">
+    <div class="of-head-left">
+      <h2 class="of-head-title">Dashboard Ofisiu Gabinete</h2>
+      <div class="of-head-meta">
+        <span class="of-dot"></span>
+        <span id="of-now" class="of-subtle"></span>
+      </div>
+    </div>
+
+    <div class="of-head-right">
+      <button class="of-iconbtn of-theme" @click="dark = !dark" :title="dark ? 'Light mode' : 'Dark mode'">
+        <!-- sun/moon -->
+        <svg v-if="dark" width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12Z" stroke="currentColor" stroke-width="2"/>
+          <path d="M12 1v2M12 21v2M4.22 4.22 5.64 5.64M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78 5.64 18.36M18.36 5.64l1.42-1.42" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+        <svg v-else width="18" height="18" viewBox="0 0 24 24" fill="none">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3c.2 0 .4.01.59.03A7 7 0 0 0 21 12.79Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+
+      <span class="of-vsep" aria-hidden="true"></span>
+
+      <div class="of-actionbar">
+        <a class="of-actbtn" href="{% url 'admin_incoming_create' %}" aria-label="Buat Karta Tama">
+          <span class="of-actico of-c-teal">
+            <svg viewBox="0 0 24 24"><path d="M21 15v3a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-3M8 10l4 4 4-4M12 14V3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="of-acttext">
+            <b>Karta Tama</b>
+            <small>Rejistu karta tama</small>
+          </span>
+        </a>
+
+        <a class="of-actbtn" href="{% url 'admin_outgoing_create' %}" aria-label="Buat Karta Sai">
+          <span class="of-actico of-c-pink">
+            <svg viewBox="0 0 24 24"><path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="of-acttext">
+            <b>Karta Sai</b>
+            <small>Komesa karta sai</small>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- METRICS: INCOMING -->
+  <div class="row g-3 mb-2">
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-teal"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4zM4 14h10v6H4zM16 14h4v6h-4z" /></svg></div>
+          <span class="of-ket">Tama — Ohin</span>
+        </div>
+        <div class="of-num">{{ stats.incoming_today }}</div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-amber"><svg viewBox="0 0 24 24"><path d="M12 2 2 7l10 5 10-5-10-5Zm0 20V12" /></svg></div>
+          <span class="of-ket">Tama — Iha Prosesu</span>
+        </div>
+        <div class="of-num d-flex align-items-center gap-2">
+          {{ stats.incoming_in_progress }}
+          <span class="status-badge" data-status="prog">DISP/PROG</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-green"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" /></svg></div>
+          <span class="of-ket">Tama — Remata</span>
+        </div>
+        <div class="of-num d-flex align-items-center gap-2">
+          {{ stats.incoming_done }}
+          <span class="status-badge" data-status="done">REMATA</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-blue"><svg viewBox="0 0 24 24"><path d="M3 5h18M3 12h18M3 19h18" /></svg></div>
+          <span class="of-ket">Tama — Total</span>
+        </div>
+        <div class="of-num">{{ stats.incoming_total }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS: OUTGOING -->
+  <div class="row g-3 mb-4">
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-slate"><svg viewBox="0 0 24 24"><path d="M4 4h16v10H4zM8 18h8" /></svg></div>
+          <span class="of-ket">Sai — Rascunhu</span>
+        </div>
+        <div class="of-num d-flex align-items-center gap-2">
+          {{ stats.outgoing_draft }}
+          <span class="status-badge" data-status="draft">RASCUNHU</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-violet"><svg viewBox="0 0 24 24"><path d="M4 4h16v6H4zM4 14h10v6H4z" /></svg></div>
+          <span class="of-ket">Sai — Revizaun</span>
+        </div>
+        <div class="of-num d-flex align-items-center gap-2">
+          {{ stats.outgoing_review }}
+          <span class="status-badge" data-status="review">REVIZAUN</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-indigo"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10" /></svg></div>
+          <span class="of-ket">Sai — Final</span>
+        </div>
+        <div class="of-num d-flex align-items-center gap-2">
+          {{ stats.outgoing_final }}
+          <span class="status-badge" data-status="final">FINAL</span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-3 col-md-6">
+      <div class="of-card">
+        <div class="of-card-top">
+          <div class="of-icopill of-c-pink"><svg viewBox="0 0 24 24"><path d="M21 12H8l5-5M13 17l-5-5" /></svg></div>
+          <span class="of-ket">Sai — Manda ona</span>
+        </div>
+        <div class="of-num">{{ stats.outgoing_sent }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TABLES -->
+  <div class="row g-4">
+    <!-- Incoming -->
+    <div class="col-lg-6">
+      <div class="of-panel">
+        <div class="of-panel-head">
+          <strong>Karta Tama Foun-liu</strong>
+          <input v-model="qIncoming" type="search" class="of-input" placeholder="Buka/filtra...">
+        </div>
+        <div class="of-tablewrap">
+          <table class="of-table">
+            <thead>
+              <tr><th>Agenda</th><th>Asuntu / Assunto</th><th>Oríjém</th><th>Estatus</th></tr>
+            </thead>
+            <tbody id="incoming-tbody">
+            {% for x in recent_incoming %}
+              <tr>
+                <td><code>{{ x.agenda_number|default:"—" }}</code></td>
+                <td class="of-truncate">
+                  {% url 'admin_incoming_detail' x.pk as det %}
+                  {% if det %}<a href="{{ det }}">{{ x.subject }}</a>{% else %}{{ x.subject }}{% endif %}
+                </td>
+                <td class="of-truncate">{{ x.origin }}</td>
+                <td>
+                  {% if x.status == "DONE" %}
+                    <span class="status-badge" data-status="done">REMATA</span>
+                  {% elif x.status == "DISP" or x.status == "PROG" %}
+                    <span class="status-badge" data-status="prog">{{ x.status }}</span>
+                  {% else %}
+                    <span class="status-badge" data-status="other">{{ x.status }}</span>
+                  {% endif %}
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="4" class="of-empty">Seidauk iha dadus.</td></tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Outgoing -->
+    <div class="col-lg-6">
+      <div class="of-panel">
+        <div class="of-panel-head">
+          <strong>Karta Sai Foun-liu</strong>
+          <input v-model="qOutgoing" type="search" class="of-input" placeholder="Buka/filtra...">
+        </div>
+        <div class="of-tablewrap">
+          <table class="of-table">
+            <thead>
+              <tr><th>Númeru</th><th>Asuntu / Assunto</th><th>Estatus</th></tr>
+            </thead>
+            <tbody id="outgoing-tbody">
+            {% for x in recent_outgoing %}
+              <tr>
+                <td><code>{{ x.number|default:"—" }}</code></td>
+                <td class="of-truncate">
+                  {% url 'admin_outgoing_detail' x.pk as det2 %}
+                  {% if det2 %}<a href="{{ det2 }}">{{ x.subject }}</a>{% else %}{{ x.subject }}{% endif %}
+                </td>
+                <td>
+                  <span class="status-badge"
+                        data-status="{{ x.status|lower }}">{{ x.status }}</span>
+                </td>
+              </tr>
+            {% empty %}
+              <tr><td colspan="3" class="of-empty">Seidauk iha dadus.</td></tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ========== STYLES (INLINE) ========== -->
+<style>
+  :root{
+    --bg: #f6f7fb; --card:#ffffff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb;
+    --ring:#93c5fd;
+    --teal:#14b8a6; --amber:#f59e0b; --green:#22c55e; --blue:#3b82f6;
+    --violet:#8b5cf6; --indigo:#6366f1; --pink:#ec4899; --slate:#94a3b8;
+  }
+  .of-dark{
+    --bg:#0b1221; --card:#0f172a; --text:#e5edf8; --muted:#9ab0d1; --border:#1f2937; --ring:#3b82f6;
+  }
+
+  .of-actionbar{
+  display:flex; gap:12px; flex-wrap:wrap;
+  }
+  .of-actbtn{
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px; border-radius:16px;
+    background:var(--card); color:var(--text);
+    border:1px solid var(--border); text-decoration:none;
+    transition: .18s box-shadow, .18s transform, .18s border-color;
+  }
+  .of-actbtn:hover{
+    transform: translateY(-1px);
+    border-color: var(--ring);
+    box-shadow: 0 10px 24px rgba(2,6,23,.08);
+  }
+  .of-actico{
+    display:grid; place-items:center;
+    width:40px; height:40px; border-radius:12px; color:#fff; flex:0 0 40px;
+  }
+  .of-actico svg{ width:20px; height:20px; }
+  .of-acttext b{ display:block; font-weight:700; line-height:1.05; }
+  .of-acttext small{ display:block; color:var(--muted); font-size:.85rem; margin-top:2px; }
+
+  .of-c-teal{ background:linear-gradient(150deg,#2dd4bf,#14b8a6); }
+  .of-c-pink{ background:linear-gradient(150deg,#f472b6,#ec4899); }
+
+  .of-actbtn,
+  .of-actbtn:link,
+  .of-actbtn:visited,
+  .of-actbtn:hover,
+  .of-actbtn:focus,
+  .of-actbtn:active {
+    text-decoration: none !important;
+  }
+
+  @media (max-width: 576px){
+    .of-actionbar{ flex-direction:column; }
+    .of-actbtn{ width:100%; }
+  }
+  .of-wrap{color:var(--text);}
+  .of-subtle{color:var(--muted); font-size:.95rem}
+  .of-dot{width:6px;height:6px;border-radius:50%;background:var(--ring);display:inline-block}
+  #of-now{opacity:.9}
+  .of-btn-primary{background:var(--blue); color:#fff; border:none}
+  .of-btn-primary:hover{filter:brightness(0.95)}
+  .of-btn-outline{border:1px solid var(--blue); color:var(--blue); background:transparent}
+  .of-btn-outline:hover{background:rgba(59,130,246,.08)}
+  .of-iconbtn{border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px}
+  .of-iconbtn:hover{border-color:var(--ring)}
+  .of-ico{display:inline-block; width:16px; height:16px; margin-right:6px; position:relative; top:-1px}
+  .of-ico-in::before, .of-ico-out::before{content:""; position:absolute; inset:0; -webkit-mask: no-repeat center/contain; mask:no-repeat center/contain; background:currentColor}
+  .of-ico-in::before{
+  content:""; position:absolute; inset:0;
+  background: currentColor;
+
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  mask-image:        url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+  -webkit-mask-position: center;  mask-position: center;
+  -webkit-mask-size: contain;      mask-size: contain;
+  }
+
+  .of-head{
+  display:flex; align-items:flex-start; justify-content:space-between;
+  gap:24px; margin-bottom:12px;
+  }
+  .of-head-left{ display:flex; flex-direction:column; }
+  .of-head-title{ margin:0; line-height:1.2; }
+  .of-head-meta{ display:flex; align-items:center; gap:8px; margin-top:4px; }
+
+  .of-head-right{ display:flex; align-items:center; gap:18px; }
+  .of-theme{ flex:0 0 auto; }        
+  .of-vsep{ width:1px; height:32px; background:var(--border); border-radius:1px; }
+
+  @media (max-width: 768px){
+    .of-head{ flex-direction:column; gap:10px; }
+    .of-head-right{ gap:12px; }
+    .of-vsep{ display:none; }
+  }
+
+  .of-ico-out::before{
+    content:""; position:absolute; inset:0;
+    background: currentColor;
+
+    -webkit-mask-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4M7 14l5-5 5 5M12 9v12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    mask-image:        url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M21 10V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v4M7 14l5-5 5 5M12 9v12" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>');
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    -webkit-mask-position: center;  mask-position: center;
+    -webkit-mask-size: contain;      mask-size: contain;
+  }
+
+  .of-card{background:var(--card); border:1px solid var(--border); border-radius:16px; padding:16px; transition:.2s box-shadow,.2s transform}
+  .of-card:hover{box-shadow:0 10px 25px rgba(2,6,23,.08); transform: translateY(-1px)}
+  .of-card-top{display:flex; align-items:center; justify-content:space-between; margin-bottom:8px}
+  .of-ket{color:var(--muted); font-size:.95rem}
+  .of-num{font-size:2rem; font-weight:700}
+  .of-icopill{display:grid; place-items:center; width:38px; height:38px; border-radius:12px; color:#fff}
+  .of-icopill svg{width:20px; height:20px; stroke:white; fill:none; stroke-width:2}
+  .of-c-teal{background:linear-gradient(150deg, #2dd4bf, #0ea5e9)}
+  .of-c-amber{background:linear-gradient(150deg, #fbbf24, #f59e0b)}
+  .of-c-green{background:linear-gradient(150deg, #34d399, #22c55e)}
+  .of-c-blue{background:linear-gradient(150deg, #60a5fa, #3b82f6)}
+  .of-c-violet{background:linear-gradient(150deg, #a78bfa, #8b5cf6)}
+  .of-c-indigo{background:linear-gradient(150deg, #818cf8, #6366f1)}
+  .of-c-pink{background:linear-gradient(150deg, #f472b6, #ec4899)}
+  .of-c-slate{background:linear-gradient(150deg, #cbd5e1, #94a3b8); color:#0f172a}
+
+  .of-panel{background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden}
+  .of-panel-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border)}
+  .of-input{border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px; outline:none; min-width:170px}
+  .of-input:focus{border-color:var(--ring); box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+  .of-tablewrap{width:100%; overflow:auto}
+  .of-table{width:100%; border-collapse:separate; border-spacing:0}
+  .of-table thead tr{background:linear-gradient(180deg, rgba(148,163,184,.12), transparent)}
+  .of-table th, .of-table td{padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:middle}
+  .of-table th{font-weight:600; color:var(--muted); white-space:nowrap}
+  .of-table tbody tr:hover{background:rgba(59,130,246,.06)}
+  .of-truncate{max-width:320px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+  .of-empty{text-align:center; color:var(--muted); padding:24px 0}
+
+  .status-badge{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:.8rem; font-weight:600; color:#0b1020; background:#e5e7eb; border:1px solid transparent}
+  .status-badge::before{content:""; width:8px; height:8px; border-radius:50%}
+  .status-badge[data-status="done"]{background:rgba(34,197,94,.12); color:#166534; border-color:rgba(34,197,94,.35)}
+  .status-badge[data-status="done"]::before{background:#22c55e}
+  .status-badge[data-status="prog"]{background:rgba(245,158,11,.12); color:#92400e; border-color:rgba(245,158,11,.35)}
+  .status-badge[data-status="prog"]::before{background:#f59e0b}
+  .status-badge[data-status="review"]{background:rgba(139,92,246,.12); color:#5b21b6; border-color:rgba(139,92,246,.35)}
+  .status-badge[data-status="review"]::before{background:#8b5cf6}
+  .status-badge[data-status="final"]{background:rgba(99,102,241,.12); color:#3730a3; border-color:rgba(99,102,241,.35)}
+  .status-badge[data-status="final"]::before{background:#6366f1}
+  .status-badge[data-status="draft"]{background:rgba(148,163,184,.18); color:#1f2937; border-color:rgba(148,163,184,.35)}
+  .status-badge[data-status="draft"]::before{background:#94a3b8}
+  .status-badge[data-status="other"]{background:rgba(2,6,23,.06); color:#0f172a; border-color:rgba(2,6,23,.15)}
+
+  /* improve links */
+  .of-table a{color:var(--blue); text-decoration:none}
+  .of-table a:hover{text-decoration:underline}
+</style>
+
+<!-- ========== SCRIPTS (INLINE) ========== -->
+<script>
+  /* Tanggal & jam Tetun, aman DOMContentLoaded + interval */
+  (function () {
+    const TETUN_DAYS = ["Domingu","Segunda","Tersa","Kuarta","Kinta","Sesta","Sabadu"];
+    const TETUN_MONTHS = ["Janeiru","Fevereiru","Marsu","Abril","Maiu","Junyu","Julhu","Agostu","Setembru","Outubru","Novembru","Dezembru"];
+  
+    function fmtTetun(d = new Date()) {
+      const dayName   = TETUN_DAYS[d.getDay()];
+      const dd        = String(d.getDate()).padStart(2, "0");
+      const monthName = TETUN_MONTHS[d.getMonth()];
+      const yyyy      = d.getFullYear();
+  
+      const time = new Intl.DateTimeFormat("en-GB", { hour: "2-digit", minute: "2-digit" })
+          .format(d)
+          .replace(":", ".");
+  
+      return `${dayName}, ${dd} ${monthName} ${yyyy} ,${time}`;
+    }
+  
+    function renderTetunNow() {
+      const el = document.getElementById("of-now");
+      if (el) el.textContent = fmtTetun();
+    }
+  
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", renderTetunNow);
+    } else {
+      renderTetunNow();
+    }
+    setInterval(renderTetunNow, 30000);
+  })();
+  </script>
+
+<!-- Vue (mini usage) -->
+<script src="https://unpkg.com/vue@3.4.29/dist/vue.global.prod.js"></script>
+<script>
+const app = Vue.createApp({
+  data(){ return { qIncoming:'', qOutgoing:'', dark: false } },
+  mounted(){
+    // Restore prefers-color-scheme
+    this.dark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    this.$watch('qIncoming', this.filterIncoming, { immediate:false });
+    this.$watch('qOutgoing', this.filterOutgoing, { immediate:false });
+  },
+  methods:{
+    filterIncoming(){
+      const q = this.qIncoming.trim().toLowerCase();
+      const rows = document.querySelectorAll('#incoming-tbody tr');
+      rows.forEach(tr=>{
+        if(tr.querySelector('.of-empty')) return;
+        const text = tr.innerText.toLowerCase();
+        tr.style.display = (q==='' || text.includes(q)) ? '' : 'none';
+      });
+    },
+    filterOutgoing(){
+      const q = this.qOutgoing.trim().toLowerCase();
+      const rows = document.querySelectorAll('#outgoing-tbody tr');
+      rows.forEach(tr=>{
+        if(tr.querySelector('.of-empty')) return;
+        const text = tr.innerText.toLowerCase();
+        tr.style.display = (q==='' || text.includes(q)) ? '' : 'none';
+      });
+    }
+  }
+});
+app.mount('#of-dashboard');
+</script>
+{% endblock %}

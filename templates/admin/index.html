@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %}
+
+{% block extrahead %}{{ block.super }}
+<link rel="stylesheet" href="{% static 'css/admin_surat.css' %}">
+{% endblock %}
+
+{% block content_title %}Ofisiu Gabinete{% endblock %}
+{% block breadcrumbs %}{% endblock %}
+
+{% block content %}
+<div id="of-dashboard" :class="{'of-dark': dark}" class="of-wrap container-fluid">
+  {# ... seluruh HTML dashboard kamu ... #}
+</div>
+{% endblock %}

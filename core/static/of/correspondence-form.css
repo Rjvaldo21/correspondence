@@ -1,0 +1,493 @@
+/* hanya aktif di halaman change_form model IncomingLetter */
+body.change-form.app-core.model-incomingletter {
+  --bg:#f6f7fb; --card:#fff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb; --ring:#93c5fd;
+  --blue:#3b82f6;
+}
+
+/* Grid 2 kolom utk fieldset pertama yang diberi classes=('of-grid-2',) */
+body.change-form.app-core.model-incomingletter .of-grid-2 .form-row {
+  display:grid; grid-template-columns: 1fr 1fr; gap:16px 20px;
+}
+@media (max-width: 992px){
+  body.change-form.app-core.model-incomingletter .of-grid-2 .form-row { grid-template-columns: 1fr; }
+}
+
+/* Input modern */
+body.change-form.app-core.model-incomingletter .aligned .form-row input,
+body.change-form.app-core.model-incomingletter .aligned .form-row select,
+body.change-form.app-core.model-incomingletter .aligned .form-row textarea{
+  border:1px solid var(--border); border-radius:12px; padding:10px 12px; background:#fff;
+}
+body.change-form.app-core.model-incomingletter .aligned .form-row :is(input,select,textarea):focus{
+  border-color:var(--ring); box-shadow:0 0 0 3px rgba(59,130,246,.15); outline:0;
+}
+
+/* Sticky footer kecil */
+body.change-form.app-core.model-incomingletter .of-actions{
+  position:sticky; bottom:8px; display:flex; gap:10px; justify-content:flex-end;
+  padding-top:14px; margin-top:18px; background:linear-gradient(180deg, transparent, var(--bg) 45%);
+}
+body.change-form.app-core.model-incomingletter .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:600}
+body.change-form.app-core.model-incomingletter .of-btn-primary{background:var(--blue); color:#fff; border:0}
+body.change-form.app-core.model-incomingletter .of-btn-ghost{border:1px solid var(--border); background:transparent; color:var(--text)}
+
+
+/* ===== Jazzmin change_form: grid 2 kolom untuk fieldset yang diberi class 'of-grid-2' ===== */
+/* (opsional) tambahkan scope body sesuai app/model agar tak pengaruh halaman lain:
+   body.change-form.app-core.model-incomingletter fieldset.of-grid-2 { ... }
+*/
+fieldset.of-grid-2{
+  display: grid !important;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+}
+
+/* Bikin setiap baris field menjadi "tembus" agar .fieldBox jadi item grid */
+fieldset.of-grid-2 .form-row{
+  display: contents;
+}
+
+/* Hilangkan margin default kotak field di dalam grid */
+fieldset.of-grid-2 .form-row .fieldBox{
+  margin: 0;
+}
+
+/* Subject melebar 2 kolom penuh */
+fieldset.of-grid-2 .form-row.field-subject .fieldBox{
+  grid-column: 1 / -1;
+}
+
+/* Fokus input tampak modern */
+fieldset.of-grid-2 .fieldBox :is(input, select, textarea):focus{
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+  outline: 0;
+}
+
+/* ===========================================================
+   UNIVERSAL ADMIN GRID (Jazzmin/Django Admin)
+   - Bekerja untuk semua fieldset yang diberi classes:
+     of-grid-2 / of-grid-3 + modifier (of-meta, of-docs, of-numera, of-status, of-retention)
+   - Aman: tidak sentuh halaman lain
+   =========================================================== */
+
+/* Grid container di fieldset */
+fieldset.of-grid-2,
+fieldset.of-grid-3{
+  display: grid !important;
+  gap: 16px 20px;
+}
+
+/* 2 kolom & 3 kolom responsif */
+fieldset.of-grid-2{ grid-template-columns: 1fr 1fr; }
+fieldset.of-grid-3{ grid-template-columns: repeat(3, 1fr); }
+
+@media (max-width: 1200px){
+  fieldset.of-grid-3{ grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 992px){
+  fieldset.of-grid-2,
+  fieldset.of-grid-3{ grid-template-columns: 1fr; }
+}
+
+/* Biar baris default Django tidak mengganggu layout grid */
+fieldset.of-grid-2 .form-row,
+fieldset.of-grid-3 .form-row{ display: contents; }
+
+/* Hilangkan margin default tiap kotak field */
+fieldset.of-grid-2 .form-row .fieldBox,
+fieldset.of-grid-3 .form-row .fieldBox{ margin: 0; }
+
+/* ---------- SECTION-SPECIFIC RULES ---------- */
+
+/* METADADUS */
+fieldset.of-meta .form-row.field-origin .fieldBox,
+fieldset.of-meta .form-row.field-subject .fieldBox{
+  grid-column: 1 / -1;   /* full width */
+}
+
+/* DOKUMENTU: scan_pdf full width, yg lain 1/2 kolom */
+fieldset.of-docs .form-row.field-scan_pdf .fieldBox{
+  grid-column: 1 / -1;
+}
+fieldset.of-docs .form-row.field-attachments .fieldBox,
+fieldset.of-docs .form-row.field-classification_tags .fieldBox{
+  grid-column: auto;     /* tetap ikut grid 2 kolom */
+}
+
+/* NUMERASAUN: agenda_number full width, qr/barcode berdampingan */
+fieldset.of-numera .form-row.field-agenda_number .fieldBox{
+  grid-column: 1 / -1;
+}
+fieldset.of-numera .form-row.field-qr_preview .fieldBox,
+fieldset.of-numera .form-row.field-barcode_preview .fieldBox{
+  display: grid; place-items: center; padding: 8px 0;
+  border: 1px dashed var(--border); border-radius: 10px; background: #fff;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-numera .form-row.field-qr_preview .fieldBox,
+  fieldset.of-numera .form-row.field-barcode_preview .fieldBox{
+    background: #0b1324; border-color:#243046;
+  }
+}
+
+/* STATUS: quick_actions full width */
+fieldset.of-status .form-row.field-quick_actions .fieldBox{
+  grid-column: 1 / -1;
+}
+
+/* RETENTION: disposed_at full width, yg lain pasangan */
+fieldset.of-retention .form-row.field-disposed_at .fieldBox{
+  grid-column: 1 / -1;
+}
+
+/* ---------- Sentuhan UI ---------- */
+
+/* Input/textarea/select gaya modern (hormati tema Jazzmin) */
+fieldset.of-grid-2 .fieldBox :is(input,select,textarea),
+fieldset.of-grid-3 .fieldBox :is(input,select,textarea){
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px 12px;
+  background: #fff;
+}
+fieldset.of-grid-2 .fieldBox :is(input,select,textarea):focus,
+fieldset.of-grid-3 .fieldBox :is(input,select,textarea):focus{
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px rgba(59,130,246,.15);
+  outline: 0;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-grid-2 .fieldBox :is(input,select,textarea),
+  fieldset.of-grid-3 .fieldBox :is(input,select,textarea){
+    background:#0b1324; border-color:#243046; color:var(--text);
+  }
+}
+
+/* Readonly box (preview QR/Barcode) rapi */
+.readonly{ font-weight: 600; }
+fieldset.of-numera .readonly{ font-weight: 500; }
+
+/* Sticky footer (kalau dipakai di template custom) */
+.of-actions{
+  position: sticky; bottom: 8px;
+  display: flex; gap: 10px; justify-content: flex-end;
+  padding-top: 14px; margin-top: 18px;
+  background: linear-gradient(180deg, transparent, var(--bg) 45%);
+}
+.btn{ display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:600; }
+.of-btn-primary{ background: var(--blue); color:#fff; border:0; }
+.of-btn-ghost{ border:1px solid var(--border); background:transparent; color:var(--text); }
+
+
+/* ================== FIX UMUM DI DALAM GRID FIELDSET ================== */
+/* Jadikan label stacked (bukan float kiri) khusus untuk fieldset grid kita */
+fieldset.of-grid-2 .fieldBox > label,
+fieldset.of-grid-3 .fieldBox > label{
+  float: none; width: auto; padding: 0; margin: 0 0 6px; display: block; text-align: left;
+}
+/* fieldBox tampil normal sebagai blok */
+fieldset.of-grid-2 .fieldBox, fieldset.of-grid-3 .fieldBox{ display: block; }
+
+/* ================== ESTATUS & RESPONSAVEL ================== */
+/* Susunan kolom responsif: 3 → 2 → 1 */
+fieldset.of-status{
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+}
+@media (max-width: 1200px){
+  fieldset.of-status{ grid-template-columns: repeat(2, minmax(260px, 1fr)); }
+}
+@media (max-width: 992px){
+  fieldset.of-status{ grid-template-columns: 1fr; }
+}
+
+/* Penempatan item grid (aman walau urutan markup berubah) */
+fieldset.of-status .form-row.field-status .fieldBox{ grid-column: span 1; }
+fieldset.of-status .form-row.field-current_handler .fieldBox{ grid-column: span 1; }
+
+fieldset.of-status .form-row.field-created_by .fieldBox,
+fieldset.of-status .form-row.field-created_at .fieldBox,
+fieldset.of-status .form-row.field-updated_at .fieldBox{
+  grid-column: span 1;
+}
+
+/* Aksi cepat selalu melebar penuh */
+fieldset.of-status .form-row.field-quick_actions .fieldBox{ grid-column: 1 / -1; }
+
+/* Rapikan related widget (select + ikon tambah/edit/lihat) */
+fieldset.of-status .related-widget-wrapper{
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;  /* select penuh + 3 ikon */
+  align-items: center;
+  gap: 8px;
+}
+fieldset.of-status .related-widget-wrapper select{ width: 100%; }
+fieldset.of-status .related-widget-wrapper .related-widget-wrapper-link{ margin: 0; }
+
+/* Box readonly (created_at/updated_at) biar rapi */
+fieldset.of-status .readonly{
+  display: inline-block; width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 42px;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-status .readonly{ background:#0b1324; border-color:#243046; }
+}
+
+/* ===== FIX KHUSUS: Estatus & Responsavel ===== */
+
+/* 1) Balikkan 'display: contents' jadi block supaya bisa stacking label */
+fieldset.of-status .form-row{ 
+  display: block !important;
+  margin: 0; 
+}
+
+/* 2) Jadikan label tidak float (stacked di atas input) */
+fieldset.of-status.aligned label{
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 0 6px !important;
+  display: block !important;
+  text-align: left !important;
+}
+/* hilangkan margin-kiri default pada konten setelah label */
+fieldset.of-status.aligned .form-row > div,
+fieldset.of-status.aligned .form-row > div > div{
+  margin-left: 0 !important;
+}
+
+/* 3) Grid 3 kolom responsif untuk seluruh fieldset */
+fieldset.of-status{
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(260px, 1fr));
+  gap: 16px 20px;
+}
+@media (max-width: 1200px){ fieldset.of-status{ grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 992px){  fieldset.of-status{ grid-template-columns: 1fr; } }
+
+/* 4) Item default 1 kolom; aksi cepat full width */
+fieldset.of-status .form-row{ grid-column: span 1; }
+fieldset.of-status .form-row.field-quick_actions{ grid-column: 1 / -1; }
+
+/* 5) Rapikan related widget (select + ikon add/edit/view) */
+fieldset.of-status .related-widget-wrapper{
+  display: grid !important;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 8px;
+}
+fieldset.of-status .related-widget-wrapper select{ width: 100% !important; min-width: 0; }
+fieldset.of-status .related-widget-wrapper .related-widget-wrapper-link{ margin: 0 !important; }
+
+/* 6) Readonly fields (created_at / updated_at) tampil seperti input */
+fieldset.of-status .readonly{
+  display: inline-block; width: 100%;
+  padding: 10px 12px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  min-height: 42px;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-status .readonly{ background:#0b1324; border-color:#243046; }
+}
+
+/* ===== FINAL FIX: ESTATUS & RESPONSAVEL ===== */
+/* Scope spesifik (aman utk halaman lain); ganti app/model jika perlu */
+body.change-form.app-core.model-incomingletter fieldset.of-status{
+  display: block !important;   /* jangan grid di container; kita grid per .form-row */
+  margin: 0;
+}
+
+/* SET DEFAULT: tiap .form-row jadi grid 1 kolom (label di atas, input di bawah) */
+body.change-form.app-core.model-incomingletter fieldset.of-status .form-row{
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 6px 12px;
+  align-items: start;
+  margin: 0;
+}
+
+/* STACK LABEL (hapus float kiri bawaan admin) */
+body.change-form.app-core.model-incomingletter fieldset.of-status.aligned label{
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 0 6px !important;
+  display: block !important;
+  text-align: left !important;
+}
+
+/* Hilangkan margin-left default area input */
+body.change-form.app-core.model-incomingletter fieldset.of-status.aligned .form-row > div{
+  margin-left: 0 !important;
+}
+
+/* FORM-ROW berisi 2 field → 2 kolom */
+body.change-form.app-core.model-incomingletter fieldset.of-status .form-row:has(.fieldBox + .fieldBox){
+  grid-template-columns: 1fr 1fr !important;
+  gap: 12px 16px;
+}
+
+/* FORM-ROW berisi 3 field → 3 kolom (created_by, created_at, updated_at) */
+body.change-form.app-core.model-incomingletter fieldset.of-status
+.form-row:has(.fieldBox + .fieldBox + .fieldBox){
+  grid-template-columns: 1fr 1fr 1fr !important;
+}
+
+/* Responsif */
+@media (max-width:1200px){
+  body.change-form.app-core.model-incomingletter fieldset.of-status
+  .form-row:has(.fieldBox + .fieldBox + .fieldBox){
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
+@media (max-width:992px){
+  body.change-form.app-core.model-incomingletter fieldset.of-status .form-row{
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* Kotak field rapi, tanpa margin default */
+body.change-form.app-core.model-incomingletter fieldset.of-status .fieldBox{
+  margin: 0 !important;
+}
+
+/* Label di dalam fieldBox juga stacked (untuk row multi-field) */
+body.change-form.app-core.model-incomingletter fieldset.of-status .fieldBox > label{
+  float: none !important;
+  width: auto !important;
+  margin: 0 0 6px !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* Related widget (select + ikon) sejajar */
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper{
+  display: grid !important;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 8px;
+}
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper select{
+  width: 100% !important; min-width: 0;
+}
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper .related-widget-wrapper-link{
+  margin: 0 !important;
+}
+
+/* Readonly look (created_at/updated_at) */
+body.change-form.app-core.model-incomingletter fieldset.of-status .readonly{
+  display:inline-block; width:100%;
+  padding:10px 12px; background:#fff; border:1px solid var(--border); border-radius:10px; min-height:42px;
+}
+@media (prefers-color-scheme:dark){
+  body.change-form.app-core.model-incomingletter fieldset.of-status .readonly{
+    background:#0b1324; border-color:#243046;
+  }
+}
+
+/* Pastikan 'Aksi Cepat' full width walau ikut row lain */
+body.change-form.app-core.model-incomingletter fieldset.of-status .form-row.field-quick_actions{
+  grid-template-columns: 1fr !important;
+}
+
+/* ===== Estatus & Responsavel — layout bersih, stabil ===== */
+/* Scope khusus halaman model ini: ganti app/model jika perlu */
+body.change-form.app-core.model-incomingletter fieldset.of-status{
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(260px, 1fr));
+  gap: 16px 20px;
+}
+@media (max-width: 992px){
+  body.change-form.app-core.model-incomingletter fieldset.of-status{
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Setiap field (tiap .form-row) jadi 1 item grid rapi */
+body.change-form.app-core.model-incomingletter fieldset.of-status .form-row{
+  margin: 0 !important;
+  display: block !important;
+}
+
+/* Label di-stack (hapus float kiri bawaan admin) */
+body.change-form.app-core.model-incomingletter fieldset.of-status.aligned label{
+  float: none !important;
+  width: auto !important;
+  padding: 0 !important;
+  margin: 0 0 6px !important;
+  display: block !important;
+  text-align: left !important;
+}
+/* hilangkan offset kiri default area input */
+body.change-form.app-core.model-incomingletter fieldset.of-status.aligned .form-row > div{
+  margin-left: 0 !important;
+}
+
+
+/* Quick actions selalu full width */
+body.change-form.app-core.model-incomingletter fieldset.of-status .form-row.field-quick_actions{
+  grid-column: 1 / -1 !important;
+}
+
+/* Related widget (select + ikon add/edit/view) sejajar dan fleksibel */
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper{
+  display: grid !important;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 8px;
+}
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper select{
+  width: 100% !important; min-width: 0;
+}
+body.change-form.app-core.model-incomingletter fieldset.of-status .related-widget-wrapper .related-widget-wrapper-link{
+  margin: 0 !important;
+}
+
+/* Readonly (created_at/updated_at) tampil seperti input */
+body.change-form.app-core.model-incomingletter fieldset.of-status .readonly{
+  display: inline-block; width: 100%;
+  padding: 10px 12px;
+  background: #fff; border: 1px solid var(--border); border-radius: 10px; min-height: 42px;
+}
+@media (prefers-color-scheme: dark){
+  body.change-form.app-core.model-incomingletter fieldset.of-status .readonly{
+    background:#0b1324; border-color:#243046;
+  }
+}
+
+/* Grid 2 kolom responsif */
+.of-grid-2 .form-row,
+.of-grid-2 .aligned {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px 16px;
+}
+.of-grid-2 .form-row > div,
+.of-grid-2 .aligned > div { min-width: 0; }
+
+/* Baris penuh untuk field yang sendirian */
+.of-grid-2 .form-row .full,
+.of-grid-2 .aligned .full { grid-column: 1 / -1; }
+
+/* Tab Status: tata letak vertikal rapi */
+.of-status .form-row,
+.of-status .aligned { display: grid; grid-template-columns: 1fr; gap: 10px; }
+
+/* Tinggikan kotak M2M biar tidak sempit */
+.selector-available, .selector-chosen { height: 260px !important; }
+
+/* Kecilkan help text */
+.help, .help-tooltip { font-size: 12px; color: var(--muted, #64748b); }
+
+/* Tombol “button” readonly field */
+.readonly .button, .readonly a.button {
+  display: inline-block; margin-right: 6px; padding: 6px 10px;
+  border-radius: 8px; text-decoration: none;
+  background: #eef2ff; border: 1px solid #d9e0ff;
+}

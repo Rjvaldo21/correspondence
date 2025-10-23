@@ -1,0 +1,124 @@
+{# templates/incoming/list.html #}
+{% extends "admin/base_site.html" %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid of-wrap">
+  <div class="of-head d-flex align-items-center justify-content-between mb-3">
+    <div class="d-flex align-items-center">
+        <h2 class="mb-0 me-3">Karta Tama</h2>
+        <span class="of-dot mx-3" aria-hidden="true"></span>
+        <span class="of-subtle" id="of-now"></span>
+      </div>      
+    <div class="d-flex align-items-center gap-2">
+      <a class="btn of-btn-primary" href="{% url 'admin_incoming_create' %}">+ Aumenta Karta Tama</a>
+    </div>
+  </div>
+
+  <div class="of-panel">
+    <div class="of-panel-head">
+      <strong>Daftar Karta Tama</strong>
+      <input type="search" class="of-input" placeholder="Buka/filtra..." oninput="
+        const q=this.value.toLowerCase();
+        document.querySelectorAll('#incoming-list tbody tr[data-row]').forEach(tr=>{
+          tr.style.display = tr.innerText.toLowerCase().includes(q) ? '' : 'none';
+        });
+      ">
+    </div>
+    <div class="of-tablewrap" id="incoming-list">
+      <table class="of-table">
+        <thead>
+          <tr>
+            <th>Agenda</th>
+            <th>Oríjém</th>
+            <th>No./Data Oríjém</th>
+            <th>Asuntu</th>
+            <th>Estatus</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for x in object_list %}
+          <tr data-row>
+            <td><code>{{ x.agenda_number|default:"—" }}</code></td>
+            <td class="of-truncate" title="{{ x.origin }}">{{ x.origin }}</td>
+            <td>
+              <div><small>{{ x.origin_number|default:"—" }}</small></div>
+              <div><small>{{ x.origin_date|date:"d M Y" }}</small></div>
+            </td>
+            <td class="of-truncate">
+              {% url 'admin_incoming_detail' x.pk as det %}
+              {% if det %}<a href="{{ det }}">{{ x.subject }}</a>{% else %}{{ x.subject }}{% endif %}
+            </td>
+            <td>
+                {% if x.status == "DONE" %}
+                  <span class="status-badge" data-status="done">REMATA</span>
+                {% elif x.status == "DISP" or x.status == "PROG" %}
+                  <span class="status-badge" data-status="prog">{{ x.status }}</span>
+                {% elif x.status == "DRAFT" %}
+                  <span class="status-badge" data-status="draft">RASCUNHU</span>
+                {% else %}
+                  <span class="status-badge" data-status="other">{{ x.status }}</span>
+                {% endif %}
+              </td>              
+          </tr>
+        {% empty %}
+          <tr><td colspan="5" class="of-empty">Seidauk iha dadus.</td></tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<style>
+/* ambil sebagian util dari dashboard biar konsisten */
+:root{
+  --bg:#f6f7fb; --card:#ffffff; --text:#0f172a; --muted:#6b7280; --border:#e5e7eb; --ring:#93c5fd;
+  --blue:#3b82f6;
+}
+.of-wrap{color:var(--text)}
+.of-subtle{color:var(--muted)}
+.of-dot{width:6px;height:6px;border-radius:50%;background:var(--ring);display:inline-block}
+.of-btn-primary{background:var(--blue); color:#fff; border:none; padding:8px 12px; border-radius:10px}
+.of-btn-primary:hover{filter:brightness(.95)}
+.of-panel{background:var(--card); border:1px solid var(--border); border-radius:16px; overflow:hidden}
+.of-panel-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--border)}
+.of-input{border:1px solid var(--border); background:transparent; color:var(--text); padding:8px 10px; border-radius:10px; outline:none; min-width:170px}
+.of-input:focus{border-color:var(--ring); box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+.of-tablewrap{width:100%; overflow:auto}
+.of-table{width:100%; border-collapse:separate; border-spacing:0}
+.of-table thead tr{background:linear-gradient(180deg, rgba(148,163,184,.12), transparent)}
+.of-table th, .of-table td{padding:10px 12px; border-bottom:1px solid var(--border); vertical-align:middle}
+.of-table th{font-weight:600; color:var(--muted); white-space:nowrap}
+.of-truncate{max-width:360px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+.of-empty{text-align:center; color:var(--muted); padding:24px 0}
+.status-badge{display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:999px; font-size:.8rem; font-weight:600; color:#0b1020; background:#e5e7eb; border:1px solid transparent}
+.status-badge::before{content:""; width:8px; height:8px; border-radius:50%}
+.status-badge[data-status="done"]{background:rgba(34,197,94,.12); color:#166534; border-color:rgba(34,197,94,.35)}
+.status-badge[data-status="done"]::before{background:#22c55e}
+.status-badge[data-status="prog"]{background:rgba(245,158,11,.12); color:#92400e; border-color:rgba(245,158,11,.35)}
+.status-badge[data-status="prog"]::before{background:#f59e0b}
+.status-badge[data-status="draft"]{background:rgba(148,163,184,.18); color:#1f2937; border-color:rgba(148,163,184,.35)}
+.status-badge[data-status="draft"]::before{background:#94a3b8}
+.status-badge[data-status="other"]{background:rgba(2,6,23,.06); color:#0f172a; border-color:rgba(2,6,23,.15)}
+</style>
+
+<script>
+(function(){
+  const TETUN_DAYS = ["Domingu","Segunda","Tersa","Kuarta","Kinta","Sesta","Sabadu"];
+  const TETUN_MONTHS = ["Janeiru","Fevereiru","Marsu","Abril","Maiu","Junyu","Julhu","Agostu","Setembru","Outubru","Novembru","Dezembru"];
+  function fmtTetun(d=new Date()){
+    const day=TETUN_DAYS[d.getDay()];
+    const dd=String(d.getDate()).padStart(2,"0");
+    const mo=TETUN_MONTHS[d.getMonth()];
+    const yyyy=d.getFullYear();
+    const time=new Intl.DateTimeFormat("en-GB",{hour:"2-digit",minute:"2-digit"}).format(d).replace(":",".");
+    return `${day}, ${dd} ${mo} ${yyyy} ,${time}`;
+  }
+  function render(){ const el=document.getElementById("of-now"); if(el) el.textContent=fmtTetun(); }
+  if(document.readyState==="loading"){ document.addEventListener("DOMContentLoaded", render); } else { render(); }
+  setInterval(render, 30000);
+})();
+</script>
+
+{% endblock %}

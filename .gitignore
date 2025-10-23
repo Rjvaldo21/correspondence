@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+build/
+dist/
+.pytest_cache/
+.coverage
+.mypy_cache/
+
+# Virtual env
+venv/
+.venv/
+
+# Django
+*.sqlite3
+db.sqlite3
+media/
+staticfiles/
+.DS_Store
+
+# Env & secrets
+.env
+.env.*
+*.key
+credentials.json
+
+# Node (jika ada frontend)
+node_modules/

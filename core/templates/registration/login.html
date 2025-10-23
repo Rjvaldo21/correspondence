@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="tet">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Login – Portal Karta</title>
+  <link rel="stylesheet" href="{% static 'core/css/admin_surat.css' %}">
+  <style>
+    body{display:grid;place-items:center;min-height:100vh;background:#f6f7fb}
+    .card{background:#fff;border-radius:14px;padding:22px 20px;box-shadow:0 10px 30px rgba(0,0,0,.08);width:min(420px,92vw)}
+    h1{margin:0 0 6px;font-size:1.25rem}
+    .muted{color:#6b7280;margin-bottom:14px}
+    .inp{width:100%;padding:10px 12px;border:1px solid #e5e7eb;border-radius:10px}
+    .inp:focus{outline:0;border-color:#93c5fd;box-shadow:0 0 0 3px rgba(59,130,246,.15)}
+    .btn{display:inline-block;background:#3b82f6;color:#fff;border:0;border-radius:10px;padding:10px 14px;font-weight:600}
+    .row{display:grid;gap:10px}
+    .err{color:#b91c1c;background:#fee2e2;border:1px solid #fecaca;border-radius:10px;padding:8px 10px;margin-bottom:10px}
+    .top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+    .brand{color:#cf1212;font-weight:800}
+    a{color:#3b82f6;text-decoration:none}
+  </style>
+</head>
+<body>
+  <form method="post" class="card">
+    {% csrf_token %}
+    <div class="top">
+      <img src="{% static 'core/img/logo.png' %}" alt="" style="width:28px;height:28px;border-radius:50%">
+      <div class="brand">Sistema Ofisiu – Portal Karta</div>
+    </div>
+    <h1>Hemu’a</h1>
+    <div class="muted">Tama ba Portal Karta</div>
+
+    {% if form.errors %}
+      <div class="err">Naran uza-na'in ka senha la loos.</div>
+    {% endif %}
+
+    <div class="row">
+      <input class="inp" type="text" name="username" placeholder="Naran uza-na'in" autofocus required>
+      <input class="inp" type="password" name="password" placeholder="Senha" required>
+      {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+      <button class="btn" type="submit">Login</button>
+      <div class="muted" style="font-size:.9rem">
+        <a href="/admin/">Tama ba Admin?</a>
+      </div>
+    </div>
+  </form>
+</body>
+</html>

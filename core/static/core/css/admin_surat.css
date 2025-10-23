@@ -1,0 +1,530 @@
+/* ====================================================================
+   SISTEMA OFISIU — MODERN & MINIMAL (Jazzmin/AdminLTE)
+   File: admin_surat.css (cleaned, English comments + Tetun notes)
+   ==================================================================== */
+
+/* ---------- Theme Tokens ---------- */
+:root{
+  --bg:#f3f5f7;
+  --card:#ffffff;
+  --border:#e8edf4;
+  --text:#0f172a;
+  --muted:#64748b;
+
+  --primary:#2563eb;
+  --primary-600:#1d4ed8;
+  --success:#16a34a;
+  --warning:#f59e0b;
+  --danger:#ef4444;
+  --info:#0ea5e9;
+
+  --radius:12px;
+  --radius-sm:10px;
+  --shadow:0 8px 18px rgba(0,0,0,.06);
+  --ring:0 0 0 3px rgba(37,99,235,.25);
+}
+
+/* ---------- Dark Mode Overrides ---------- */
+@media (prefers-color-scheme: dark){
+  :root{
+    --bg:#0b1220; --card:#0f172a; --border:#1f2937;
+    --text:#e5e7eb; --muted:#9ca3af;
+    --shadow:0 6px 22px rgba(0,0,0,.35);
+  }
+}
+
+/* ====================================================================
+   BASE UI
+   ==================================================================== */
+.content-wrapper, .content{ background:var(--bg) !important; color:var(--text); }
+.content-wrapper .content-header{ background:transparent !important; border:0; }
+
+.card{ background:var(--card); border:1px solid var(--border); border-radius:var(--radius); box-shadow:var(--shadow); overflow:hidden; }
+.card-header{ background:var(--card); border-bottom:1px solid var(--border); }
+.card-title{ font-weight:700; letter-spacing:.2px; }
+
+/* Status badges */
+.badge-status{ padding:.35rem .55rem; border-radius:.5rem; font-weight:600; color:#fff; }
+.badge-draft{ background:#95a5a6; }
+.badge-reg{ background:#74b9ff; }
+.badge-disp{ background:#f1c40f; color:#222; }
+.badge-prog{ background:#6c5ce7; }
+.badge-done{ background:#2ecc71; }
+.badge-arch{ background:#7f8c8d; }
+.badge-review{ background:#f39c12; color:#222; }
+.badge-approved{ background:#27ae60; }
+.badge-final{ background:#16a085; }
+.badge-sent{ background:#3498db; }
+
+/* Object tools */
+.object-tools .btn{ margin-left:.35rem; }
+.object-tools .btn svg{ vertical-align:-2px; }
+
+/* Tables / DataTables */
+table.dataTable thead th{ white-space:nowrap; }
+.dataTables_wrapper .dataTables_length select,
+.dataTables_wrapper .dataTables_filter input{ border-radius:.4rem; }
+
+/* Utility bar */
+.of-utilitybar{ border-radius:.5rem; }
+
+/* ====================================================================
+   SIDEBAR (colors & behavior)
+   ==================================================================== */
+.main-sidebar a, .main-sidebar a:visited{ color:inherit; }
+
+.sidebar-dark-primary .brand-link,
+.sidebar-dark .brand-link,
+.main-sidebar .brand-link{
+  color:#212121 !important;
+  font-weight:700;
+  letter-spacing:.2px;
+  text-shadow:0 1px 1px rgba(0,0,0,.25);
+}
+.sidebar-dark-primary .brand-link .brand-text,
+.sidebar-dark .brand-link .brand-text,
+.main-sidebar .brand-link .brand-text{ color:inherit !important; }
+
+.sidebar-dark-primary .brand-link:hover,
+.sidebar-dark .brand-link:hover,
+.main-sidebar .brand-link:hover{
+  color:#212121 !important;
+  background-color:rgba(255,255,255,.06) !important;
+  text-decoration:none !important;
+}
+
+.brand-link .brand-image{ opacity:1 !important; filter:none !important; transition:opacity .15s ease; }
+
+.sidebar-dark-primary .nav-sidebar .nav-link,
+.sidebar-dark .nav-sidebar .nav-link{ color:#cbd5e1 !important; }
+.sidebar-dark-primary .nav-sidebar .nav-link:hover,
+.sidebar-dark .nav-sidebar .nav-link:hover{ color:#ffffff !important; }
+.sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active,
+.sidebar-dark .nav-sidebar>.nav-item>.nav-link.active{
+  background-color:#243242 !important; color:#ffffff !important;
+}
+
+/* Hide user panel & default "Dashboard" item */
+.main-sidebar .user-panel{ display:none !important; }
+.main-sidebar .nav-sidebar > .nav-item > .nav-link[href$="/admin/"]{ display:none !important; }
+
+/* Group headers (generated via ::before) */
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/outgoingletter/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/outgoingletter/"]{ margin-top:12px; position:relative; }
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/outgoingletter/"]::before,
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/outgoingletter/"]::before{
+  content:"Prosesu Karta Sai";
+  display:block; margin:8px 0 6px; padding-left:2px;
+  font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#94a3b8;
+}
+
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/classificationtag/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/classificationtag/"]{ margin-top:14px; position:relative; }
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/classificationtag/"]::before,
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/classificationtag/"]::before{
+  content:"Referénsia";
+  display:block; margin:8px 0 6px; padding-left:2px;
+  font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#94a3b8;
+}
+
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/grupu/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/grupu/"]{ margin-top:14px; position:relative; }
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/grupu/"]::before,
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/grupu/"]::before{
+  content:"Autentikasaun & Otorizasaun";
+  display:block; margin:8px 0 6px; padding-left:2px;
+  font-size:.75rem; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#94a3b8;
+}
+
+/* Thin dividers above key items */
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/outgoingletter/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/classificationtag/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/grupu/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/outgoingletter/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/classificationtag/"],
+.main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/grupu/"]{
+  border-top:1px solid rgba(255,255,255,.08); padding-top:10px;
+}
+
+/* Hide built-in sidebar headers (we use ::before labels) */
+aside.main-sidebar .nav-header{ display:none !important; }
+
+/* Sidebar item layout: 3-column grid [icon | label | meta] */
+.main-sidebar .nav-sidebar .nav-item > .nav-link{
+  display:grid !important;
+  grid-template-columns:36px 1fr auto;
+  align-items:center;
+  column-gap:12px;
+  margin:2px 10px;
+  padding:10px 12px;
+  border-radius:12px;
+  min-height:44px;
+  transition:background-color .18s ease, color .18s ease, transform .15s ease;
+}
+
+/* Normalize icons */
+.main-sidebar .nav-sidebar .nav-link .nav-icon{
+  grid-column:1 / 2;
+  justify-self:start;
+  display:inline-flex !important; align-items:center; justify-content:center;
+  width:32px; height:32px; flex:0 0 32px;
+  margin:0 !important; padding:0 !important;
+  border-radius:10px;
+  background:rgba(100,116,139,.15);
+  color:#475569;
+  box-shadow:inset 0 2px 6px rgba(0,0,0,.05);
+}
+.main-sidebar .nav-sidebar .nav-link .nav-icon .fa,
+.main-sidebar .nav-sidebar .nav-link .nav-icon .fas,
+.main-sidebar .nav-sidebar .nav-link .nav-icon .far,
+.main-sidebar .nav-sidebar .nav-link .nav-icon .fal,
+.main-sidebar .nav-sidebar .nav-link .nav-icon .fab{ font-size:15px; line-height:1; }
+.main-sidebar .nav-sidebar .nav-link .nav-icon svg{ width:18px; height:18px; display:block; }
+.main-sidebar .nav-sidebar .nav-link .nav-icon img{ width:18px; height:18px; object-fit:contain; display:block; }
+
+/* Label (column 2) */
+.main-sidebar .nav-sidebar .nav-item > .nav-link > p{
+  grid-column:2 / 3; margin:0; padding:0; min-width:0;
+  color:#0f172a; opacity:.95; font-weight:600; letter-spacing:.2px; white-space:normal;
+}
+
+/* Meta (column 3) */
+.main-sidebar .nav-sidebar .nav-item > .nav-link .right,
+.main-sidebar .nav-sidebar .nav-item > .nav-link .badge,
+.main-sidebar .nav-sidebar .nav-item > .nav-link .float-right{
+  grid-column:3 / 4; justify-self:end; margin-left:0 !important;
+}
+
+/* Hover & active states */
+.main-sidebar .nav-sidebar .nav-item > .nav-link:hover{ background:rgba(2,6,23,.05); }
+.main-sidebar .nav-sidebar > .nav-item > .nav-link.active{ background:#eef2ff !important; color:#111827 !important; font-weight:700; }
+
+/* Submenu layout (indented grid) */
+.main-sidebar .nav-treeview .nav-link{
+  display:grid !important; grid-template-columns:30px 1fr auto;
+  align-items:center; column-gap:10px; padding:8px 12px 8px 26px; min-height:38px; border-radius:10px;
+}
+.main-sidebar .nav-treeview .nav-link .nav-icon{ width:26px; height:26px; border-radius:8px; opacity:.95; }
+
+/* Color chips by URL (visual grouping) */
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/incomingletter/"] .nav-icon{ background:rgba(37,99,235,.15); color:#2563eb; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/disposition/"] .nav-icon{ background:rgba(139,92,246,.16); color:#8b5cf6; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/dispositionassignment/"] .nav-icon{ background:rgba(20,184,166,.16); color:#14b8a6; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/followup/"] .nav-icon{ background:rgba(245,158,11,.18); color:#f59e0b; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/outgoingletter/"] .nav-icon{ background:rgba(16,185,129,.16); color:#10b981; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/reviewstep/"] .nav-icon{ background:rgba(99,102,241,.18); color:#6366f1; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/expeditionrecord/"] .nav-icon{ background:rgba(6,182,212,.16); color:#06b6d4; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/classificationtag/"] .nav-icon{ background:rgba(51,65,85,.16); color:#334155; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/attachment/"] .nav-icon{ background:rgba(236,72,153,.16); color:#ec4899; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/grupu/"] .nav-icon,
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/auth/group/"] .nav-icon{ background:rgba(100,116,139,.16); color:#475569; }
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/core/uzuariu/"] .nav-icon,
+.main-sidebar .nav-sidebar .nav-link[href*="/admin/auth/user/"] .nav-icon{ background:rgba(71,85,105,.16); color:#334155; }
+
+/* Optional quick dashboard pill (custom anchor) */
+.of-dash-pill{
+  display:block; margin:10px 12px 6px; padding:8px 10px; border-radius:10px; font-weight:700; text-decoration:none !important;
+}
+.sidebar-dark .of-dash-pill{ background:rgba(255,255,255,.10); color:#fff !important; }
+.sidebar-dark .of-dash-pill:hover{ background:rgba(255,255,255,.18); color:#fff !important; }
+.sidebar-light .of-dash-pill{ background:#eef2f7; color:#0f172a !important; }
+.sidebar-light .of-dash-pill:hover{ background:#e5edf7; color:#0b1020 !important; }
+.of-dash-pill .nav-icon{ margin-right:6px; }
+
+/* ====================================================================
+   NAVBAR (top bar)
+   ==================================================================== */
+.navbar-dark .navbar-brand,
+.navbar-dark .navbar-brand:visited{ color:#ffffff !important; }
+.navbar-dark .navbar-brand:hover,
+.navbar-dark .navbar-brand:focus{ color:#ffffff !important; text-decoration:none !important; }
+
+/* Single-source TIC logo (no duplicates) — AdminLTE uses <nav class="main-header navbar ..."> */
+
+/* 1) Disable global fallback image by default */
+.navbar.main-header::before{ content:none !important; }
+
+/* 2) If a brand exists, attach logo to the brand only */
+.navbar.main-header:has(.navbar-brand, a.navbar-brand) .navbar-brand,
+.navbar.main-header:has(.navbar-brand, a.navbar-brand) a.navbar-brand{
+  display:inline-flex !important;
+  align-items:center;
+  gap:8px;
+  padding-left:36px !important;
+  background:url("/static/core/img/tic-timor.svg") left center/28px 28px no-repeat !important;
+  color:inherit !important;
+}
+
+/* 3) When brand exists, ensure /admin links don't duplicate the logo */
+.navbar.main-header:has(.navbar-brand, a.navbar-brand) .navbar-nav > .nav-item > .nav-link[href$="/admin/"],
+.navbar.main-header:has(.navbar-brand, a.navbar-brand) .navbar-nav > .nav-item > .nav-link[href*="/admin/persuratan"]{
+  background:none !important;
+  padding-left:.5rem !important;
+}
+
+/* 4) If no brand exists, attach logo to /admin links */
+.navbar.main-header:not(:has(.navbar-brand, a.navbar-brand)) .navbar-nav > .nav-item > .nav-link[href$="/admin/"],
+.navbar.main-header:not(:has(.navbar-brand, a.navbar-brand)) .navbar-nav > .nav-item > .nav-link[href*="/admin/persuratan"]{
+  display:inline-flex !important;
+  align-items:center;
+  gap:8px;
+  padding-left:36px !important;
+  background:url("/static/core/img/tic-timor.svg") left center/28px 28px no-repeat !important;
+  color:inherit !important;
+}
+
+/* 5) If neither brand nor /admin links exist, draw a fallback image on the bar */
+.navbar.main-header:not(:has(
+  .navbar-brand, a.navbar-brand,
+  .navbar-nav > .nav-item > .nav-link[href$="/admin/"],
+  .navbar-nav > .nav-item > .nav-link[href*="/admin/persuratan"]
+))::before{
+  content:"";
+  position:absolute;
+  left:12px; top:50%; transform:translateY(-50%);
+  width:28px; height:28px;
+  background:url("/static/core/img/tic-timor.svg") center/contain no-repeat;
+  pointer-events:none;
+  display:block;
+}
+/* Left padding so the first-left menu won't overlap the fallback logo */
+.navbar.main-header .navbar-nav:first-child{ padding-left:52px !important; }
+
+/* Keep hamburger visible by default; hide only in no-sidebar mode */
+.main-header .navbar-nav .nav-link[data-widget="pushmenu"],
+.main-header .navbar-nav .nav-link .fa-bars{ display:inline-flex; pointer-events:auto; }
+body.of-nosidebar .navbar .nav-link[data-widget="pushmenu"],
+body.of-nosidebar .navbar .nav-link .fa-bars{ display:none !important; pointer-events:none !important; }
+
+/* ====================================================================
+   LAYOUT MODES
+   ==================================================================== */
+/* No-sidebar mode: hide sidebar only (keep header/footer) */
+body.of-nosidebar .main-sidebar{ display:none !important; }
+body.of-nosidebar .content-wrapper,
+body.of-nosidebar .main-header,
+body.of-nosidebar .main-footer{ margin-left:0 !important; }
+body.of-nosidebar .content-wrapper{ padding-left:0 !important; }
+body.of-nosidebar .control-sidebar{ display:none !important; }
+
+/* Leadership dashboard: no sidebar; keep header for logo; footer optional */
+body.of-pimpinan .main-header{ display:flex !important; }       /* keep topbar */
+body.of-pimpinan .main-sidebar{ display:none !important; }      /* hide sidebar (required) */
+body.of-pimpinan .control-sidebar{ display:none !important; }
+body.of-pimpinan .main-footer{ display:none !important; }       /* optional */
+body.of-pimpinan .content-wrapper{
+  margin:0 !important; padding:0 !important; background:var(--bg) !important;
+}
+body.of-pimpinan .content{
+  padding:0 !important; background:var(--bg) !important;
+}
+body.of-pimpinan .content-wrapper .content-header{ display:none !important; }
+
+/* ====================================================================
+   SOFT UI THEME (opt-in with body.of-soft)
+   ==================================================================== */
+body.of-soft{
+  --bg:#f5f7f6; --card:#ffffff; --border:#eef2f7;
+  --text:#0f172a; --muted:#64748b;
+  --primary:#635bff; --primary-600:#5249ff;
+  --shadow:0 10px 24px rgba(15,23,42,.06);
+}
+
+/* Menu Sidebar Background Color */
+body.of-soft .main-sidebar{ background:#f6f6f6 !important; color:#0f172a; border-right:1px solid var(--border); }
+body.of-soft .sidebar-dark .nav-sidebar .nav-link,
+body.of-soft .sidebar-dark-primary .nav-sidebar .nav-link{ color:#475569 !important; }
+body.of-soft .sidebar-dark .nav-sidebar .nav-link:hover,
+body.of-soft .sidebar-dark-primary .nav-sidebar .nav-link:hover{ color:#111827 !important; background:#f3f6fb22 !important; }
+body.of-soft .sidebar-dark .nav-sidebar>.nav-item>.nav-link.active,
+body.of-soft .sidebar-dark-primary .nav-sidebar>.nav-item>.nav-link.active{
+  background:#eef2ff !important; color:#b9f7cf !important; font-weight:700;
+}
+body.of-soft .main-header.navbar{ background:#ffffff; border-bottom:1px solid var(--border); box-shadow:var(--shadow); }
+body.of-soft .btn{ border-radius:9999px; padding:.5rem .9rem; }
+body.of-soft .btn-sm{ padding:.35rem .7rem; }
+body.of-soft .btn-primary{ background:var(--primary); border-color:var(--primary); }
+body.of-soft .btn-primary:hover{ background:var(--primary-600); border-color:var(--primary-600); }
+body.of-soft .form-control,
+body.of-soft .custom-select,
+body.of-soft .select2-selection{ border-radius:9999px !important; }
+
+/* Soft list look (changelist) */
+body.of-soft .change-list .results > table{
+  border-collapse:separate !important; border-spacing:0 .75rem !important; background:transparent;
+}
+body.of-soft .change-list .results table thead th{
+  background:transparent; border-bottom:0 !important; font-weight:700; letter-spacing:.02em;
+}
+body.of-soft .change-list .results table tbody tr{ background:transparent; }
+body.of-soft .change-list .results table tbody td{
+  background:var(--card); border-top:1px solid var(--border) !important; border-bottom:1px solid var(--border) !important;
+}
+body.of-soft .change-list .results table tbody td:first-child{
+  border-left:1px solid var(--border) !important; border-top-left-radius:16px; border-bottom-left-radius:16px;
+}
+body.of-soft .change-list .results table tbody td:last-child{
+  border-right:1px solid var(--border) !important; border-top-right-radius:16px; border-bottom-right-radius:16px;
+}
+body.of-soft .change-list .results table tbody tr:hover td{
+  box-shadow:var(--shadow); transform:translateY(-1px);
+  transition:box-shadow .2s ease, transform .2s ease;
+}
+body.of-soft .results table td.field-qr_image,
+body.of-soft .results table td.field-barcode_image,
+body.of-soft .results table td.column-qr,
+body.of-soft .results table td.column-barcode{ text-align:center; }
+body.of-soft .results table td.action-checkbox{ width:42px; text-align:center; }
+body.of-soft #changelist-form .actions{ border-radius:16px; padding:10px 12px; box-shadow:var(--shadow); }
+body.of-soft #changelist-filter{ border-radius:16px; box-shadow:var(--shadow); }
+body.of-soft .badge-status{ font-weight:700; box-shadow:0 2px 6px rgba(0,0,0,.06); }
+body.of-soft .card{ border-radius:18px; }
+body.of-soft .card-header{ border-radius:18px 18px 0 0; }
+body.of-soft .main-footer{ background:#cdf5d5; border-top:1px solid var(--border); }
+body.of-soft .btn-group .btn, body.of-soft .btn.btn-light{ background:#f5f7ff; border:1px solid #e6eaff; color:#4338ca; }
+body.of-soft .btn-group .btn.active{ background:#4338ca; color:#fff; border-color:#4338ca; }
+
+/* ====================================================================
+   OFISIU FORM — Modern & ringan (scope: halaman form/admin)
+   Komentariu iha Tetun. La hetan impaktu ba lista.
+   ==================================================================== */
+
+/* 1) Fundu no kartu iha pajina form (change_form deit) */
+body.change-form{ background:var(--bg) !important; color:var(--text); }
+body.change-form .card{ background:var(--card); border:1px solid var(--border); border-radius:16px; box-shadow:var(--shadow); }
+body.change-form .card-header{ background:var(--card); border-bottom:1px solid var(--border); }
+body.change-form fieldset.module > h2{ font-weight:700; letter-spacing:.2px; margin-bottom:10px; }
+body.change-form .help, body.change-form .help-block{ color:var(--muted); font-size:.85rem; margin-top:6px; }
+
+/* 2) Tabs horizontal (Jazzmin) — estilo modernu */
+.changeform-tabs{ border-bottom:1px solid var(--border); margin-bottom:16px; }
+.changeform-tabs .nav-link{
+  border-radius:12px 12px 0 0 !important; padding:10px 14px; margin-right:6px; font-weight:600; color:var(--muted);
+}
+.changeform-tabs .nav-link.active{
+  background:var(--card); color:var(--text);
+  border:1px solid var(--border); border-bottom-color:transparent;
+}
+
+/* 3) GRID util: of-grid-2 / of-grid-3 (uza iha admin.py fieldsets->classes) */
+fieldset.of-grid-2, fieldset.of-grid-3{ display:grid !important; gap:16px 20px; }
+fieldset.of-grid-2{ grid-template-columns:1fr 1fr; }
+fieldset.of-grid-3{ grid-template-columns:repeat(3,1fr); }
+
+/* “form-row” la estraga grid — troka ba contents */
+fieldset.of-grid-2 .form-row, fieldset.of-grid-3 .form-row{ display:contents; }
+fieldset.of-grid-2 .fieldBox,  fieldset.of-grid-3 .fieldBox{ margin:0; display:block; }
+
+/* Label iha leten (stacked) — lakon float sira */
+fieldset.of-grid-2 .fieldBox>label, fieldset.of-grid-3 .fieldBox>label{
+  float:none; width:auto; margin:0 0 6px; padding:0; display:block; text-align:left;
+}
+
+/* Responsivu */
+@media (max-width:1200px){ fieldset.of-grid-3{ grid-template-columns:1fr 1fr; } }
+@media (max-width:992px){  fieldset.of-grid-2, fieldset.of-grid-3{ grid-template-columns:1fr; } }
+
+/* 4) Regras seksoin espesífiku (metadadus/docs/numero/retensaun/status) */
+/* Metadadus: origin + subject full width */
+fieldset.of-meta .form-row.field-origin .fieldBox,
+fieldset.of-meta .form-row.field-subject .fieldBox{ grid-column:1 / -1; }
+
+/* Dokumentu: scan PDF full width; anexu/klasifikasaun 1/2 */
+fieldset.of-docs .form-row.field-scan_pdf .fieldBox{ grid-column:1 / -1; }
+
+/* Numerasaun: agenda full; QR/Barcode iha chip */
+fieldset.of-numera .form-row.field-agenda_number .fieldBox{ grid-column:1 / -1; }
+fieldset.of-numera .form-row.field-qr_preview .fieldBox,
+fieldset.of-numera .form-row.field-barcode_preview .fieldBox{
+  display:grid; place-items:center; padding:10px 0;
+  border:1px dashed var(--border); border-radius:10px; background:#fff;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-numera .form-row.field-qr_preview .fieldBox,
+  fieldset.of-numera .form-row.field-barcode_preview .fieldBox{ background:#0b1324; }
+}
+
+/* Retensaun: disposed_at full width */
+fieldset.of-retention .form-row.field-disposed_at .fieldBox{ grid-column:1 / -1; }
+
+/* Estatus & Responsavel — 3→2→1 koluna; label stacked */
+fieldset.of-status{
+  display:grid !important; gap:16px 20px;
+  grid-template-columns:repeat(3, minmax(260px,1fr));
+}
+@media (max-width:1200px){ fieldset.of-status{ grid-template-columns:repeat(2, minmax(260px,1fr)); } }
+@media (max-width:992px){  fieldset.of-status{ grid-template-columns:1fr; } }
+fieldset.of-status .form-row{ display:block !important; margin:0; }
+fieldset.of-status.aligned label{
+  float:none !important; width:auto !important; padding:0 !important;
+  margin:0 0 6px !important; display:block !important; text-align:left !important;
+}
+fieldset.of-status.aligned .form-row>div{ margin-left:0 !important; }
+/* Quick actions full width */
+fieldset.of-status .form-row.field-quick_actions{ grid-column:1 / -1; }
+/* Related widget (select + add/edit/view) rapi */
+fieldset.of-status .related-widget-wrapper{
+  display:grid !important; grid-template-columns:1fr auto auto auto; align-items:center; gap:8px;
+}
+fieldset.of-status .related-widget-wrapper select{ width:100% !important; min-width:0; }
+fieldset.of-status .related-widget-wrapper .related-widget-wrapper-link{ margin:0 !important; }
+/* Readonly look hanesan input */
+fieldset.of-status .readonly{
+  display:inline-block; width:100%; min-height:42px;
+  padding:10px 12px; background:#fff; border:1px solid var(--border); border-radius:10px;
+}
+@media (prefers-color-scheme: dark){ fieldset.of-status .readonly{ background:#0b1324; } }
+
+/* 5) Input modernu + ring focus (universal ba grid/status) */
+fieldset.of-grid-2 .fieldBox :is(input,select,textarea),
+fieldset.of-grid-3 .fieldBox :is(input,select,textarea),
+fieldset.of-status   :is(input,select,textarea){
+  border:1px solid var(--border); border-radius:12px; padding:10px 12px; background:#fff;
+}
+fieldset.of-grid-2 .fieldBox :is(input,select,textarea):focus,
+fieldset.of-grid-3 .fieldBox :is(input,select,textarea):focus,
+fieldset.of-status   :is(input,select,textarea):focus{
+  border-color:#93c5fd; box-shadow:0 0 0 3px rgba(59,130,246,.15); outline:0;
+}
+@media (prefers-color-scheme: dark){
+  fieldset.of-grid-2 .fieldBox :is(input,select,textarea),
+  fieldset.of-grid-3 .fieldBox :is(input,select,textarea),
+  fieldset.of-status   :is(input,select,textarea){
+    background:#0b1324; color:var(--text); border-color:#243046;
+  }
+}
+
+/* Util class atu injeta via ModelForm (__init__) */
+.of-input{ border-radius:12px !important; }
+
+/* File input (PDF) fo halo limpo */
+input[type="file"]{ padding:8px; background:#fff; border:1px solid var(--border); border-radius:10px; }
+
+/* 6) Inline Tabular (Dispozisaun/FollowUp/ReviewStep) — spacing */
+.inline-group{ border:1px solid var(--border); border-radius:12px; overflow:hidden; }
+.inline-group .inline-related{ border-bottom:1px solid var(--border); background:var(--card); }
+.inline-group .inline-related:last-child{ border-bottom:0; }
+.inline-group .form-row{ padding:10px 12px; }
+
+/* 7) Sticky action bar (se imi uza container .of-actions iha template) */
+.of-actions{
+  position:sticky; bottom:8px; display:flex; gap:10px; justify-content:flex-end;
+  padding-top:14px; margin-top:18px; background:linear-gradient(180deg, transparent, var(--bg) 45%);
+}
+.of-actions .button, .of-actions .btn{
+  display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; font-weight:600;
+}
+.of-actions .of-btn-primary{ background:var(--primary); color:#fff; border:0; }
+.of-actions .of-btn-ghost{ border:1px solid var(--border); background:transparent; color:var(--text); }
+
+/* 8) Validasaun — error state nakonu */
+.errors, .errorlist{ color:#b91c1c; margin:6px 0 0; font-weight:600; }
+.form-row.errors :is(input,select,textarea){
+  border-color:#ef4444 !important; box-shadow:0 0 0 3px rgba(239,68,68,.15) !important;
+}
+
+/* 9) Jazzmin collapse (fieldset.collapse) */
+fieldset.collapse{
+  border:1px dashed var(--border); border-radius:12px; background:rgba(2,6,23,.02);
+}
+fieldset.collapse > h2{ cursor:pointer; }

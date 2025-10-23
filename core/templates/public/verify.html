@@ -1,0 +1,58 @@
+{# templates/public/verify.html #}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Verifikasaun Dokumentu</title>
+    <style>
+      :root { --ok:#22c55e; --muted:#6b7280; --bad:#ef4444; --bg:#f8fafc; }
+      body{font-family:ui-sans-serif,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);margin:0;padding:24px;color:#111827}
+      .card{max-width:720px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.06);padding:24px}
+      .h{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+      .h .dot{width:12px;height:12px;border-radius:999px;background:var(--ok)}
+      .meta{display:grid;grid-template-columns:180px 1fr;gap:6px 16px;margin-top:12px}
+      .kbd{font-family:ui-monospace,Consolas,monospace;background:#f3f4f6;border-radius:6px;padding:2px 6px}
+      .muted{color:var(--muted);font-size:12px;margin-top:8px}
+      .footer{margin-top:20px;font-size:12px;color:#6b7280}
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div class="h">
+        <div class="dot"></div>
+        <h2 style="margin:0">Verifikasaun Dokumentu</h2>
+      </div>
+
+      {% if kind == "incoming" %}
+        <p>Dokumentu ida ne’e hetan iha Sistema Ofisiu.</p>
+        <div class="meta">
+          <div>Númeru Agenda</div> <div class="kbd">{{ obj.agenda_number }}</div>
+          <div>Status</div>         <div>{{ obj.status }}</div>
+          <div>Kria iha</div>       <div>{{ obj.created_at|date:"M d, Y, H:i" }}</div>
+          <div>Prioridade</div>     <div>{{ obj.priority }}</div>
+        </div>
+      {% elif kind == "outgoing" %}
+        <p>Dokumentu ida ne’e hetan iha Sistema Ofisiu.</p>
+        <div class="meta">
+          <div>Númeru</div>          <div class="kbd">{{ obj.number }}</div>
+          <div>Template</div>        <div>{{ obj.template }}</div>
+          <div>Status</div>          <div>{{ obj.status }}</div>
+          <div>Kria iha</div>        <div>{{ obj.created_at|date:"M d, Y, H:i" }}</div>
+          <div>PDF Asinatura</div>   <div>{{ obj.has_signed_pdf|yesno:"Iha,Ee,La iha" }}</div>
+        </div>
+      {% else %}
+        <p style="color:var(--bad)">Kode verifikasaun la válidu.</p>
+      {% endif %}
+
+      <p class="muted">
+        Nota: Páhina ida-ne’e de’it hatudu <i>metadata</i> ba verifikasaun.
+        Kontéudu dokumentu la’o husi sistemu internas (presiza aksesu).
+      </p>
+
+      <div class="footer">
+        Código: <span class="kbd">{{ code }}</span> • Verifika iha: {{ now|date:"M d, Y, H:i" }}
+      </div>
+    </div>
+  </body>
+</html>

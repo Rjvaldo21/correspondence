@@ -1,0 +1,780 @@
+# This file is distributed under the same license as the Django package.
+#
+# Translators:
+# Base: Django (id), Adapted to Tetun for your project
+msgid ""
+msgstr ""
+"Project-Id-Version: django\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-03-19 11:30-0500\n"
+"PO-Revision-Date: 2025-10-21 00:00+0000\n"
+"Last-Translator: Sistema Ofisiu\n"
+"Language-Team: Tetun\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: tet\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#, python-format
+msgid "Delete selected %(verbose_name_plural)s"
+msgstr "Hamoos %(verbose_name_plural)s ne'ebé hili"
+
+#, python-format
+msgid "Successfully deleted %(count)d %(items)s."
+msgstr "Hamoos ho susesu %(count)d %(items)s."
+
+#, python-format
+msgid "Cannot delete %(name)s"
+msgstr "La bele hamoos %(name)s"
+
+msgid "Delete multiple objects"
+msgstr "Hamoos objetu barak"
+
+msgid "Administration"
+msgstr "Administrasaun"
+
+msgid "All"
+msgstr "Hotu-hotu"
+
+msgid "Yes"
+msgstr "Sin"
+
+msgid "No"
+msgstr "Lae"
+
+msgid "Unknown"
+msgstr "La hatene"
+
+msgid "Any date"
+msgstr "Data ruma deit"
+
+msgid "Today"
+msgstr "Ohin"
+
+msgid "Past 7 days"
+msgstr "Loron 7 liuba"
+
+msgid "This month"
+msgstr "Fulan ida-ne'e"
+
+msgid "This year"
+msgstr "Tinan ida-ne'e"
+
+msgid "No date"
+msgstr "La iha data"
+
+msgid "Has date"
+msgstr "Iha data"
+
+msgid "Empty"
+msgstr "Mamuk"
+
+msgid "Not empty"
+msgstr "La mamuk"
+
+#, python-format
+msgid ""
+"Please enter the correct %(username)s and password for a staff account. Note "
+"that both fields may be case-sensitive."
+msgstr ""
+"Favór hatama %(username)s no senha loos ba konta staf. Hatene katak letra "
+"boot-kiik iha kampu sira bele importante."
+
+msgid "Action:"
+msgstr "Asaun:"
+
+#, python-format
+msgid "Add another %(verbose_name)s"
+msgstr "Aumenta %(verbose_name)s seluk"
+
+msgid "Remove"
+msgstr "Hasai"
+
+msgid "Addition"
+msgstr "Aumentu"
+
+msgid "Change"
+msgstr "Troka"
+
+msgid "Deletion"
+msgstr "Hamoos"
+
+msgid "action time"
+msgstr "tempu asaun"
+
+msgid "user"
+msgstr "Uzuáriu"
+
+msgid "content type"
+msgstr "Tipu konteúdu"
+
+msgid "object id"
+msgstr "ID objetu"
+
+#. Translators: 'repr' means representation
+#. (https://docs.python.org/library/functions.html#repr)
+msgid "object repr"
+msgstr "representasaun objetu"
+
+msgid "action flag"
+msgstr "marka asaun"
+
+msgid "change message"
+msgstr "mensajen troka"
+
+msgid "log entry"
+msgstr "entrada log"
+
+msgid "log entries"
+msgstr "entrada log sira"
+
+#, python-format
+msgid "Added “%(object)s”."
+msgstr "Aumenta “%(object)s”."
+
+#, python-format
+msgid "Changed “%(object)s” — %(changes)s"
+msgstr "Troka “%(object)s” — %(changes)s"
+
+#, python-format
+msgid "Deleted “%(object)s.”"
+msgstr "Hamoos “%(object)s”."
+
+msgid "LogEntry Object"
+msgstr "Objektu LogEntry"
+
+#, python-brace-format
+msgid "Added {name} “{object}”."
+msgstr "Aumenta {name} “{object}”."
+
+msgid "Added."
+msgstr "Aumenta ona."
+
+msgid "and"
+msgstr "no"
+
+#, python-brace-format
+msgid "Changed {fields} for {name} “{object}”."
+msgstr "Troka {fields} ba {name} “{object}”."
+
+#, python-brace-format
+msgid "Changed {fields}."
+msgstr "Troka {fields}."
+
+#, python-brace-format
+msgid "Deleted {name} “{object}”."
+msgstr "Hamoos {name} “{object}”."
+
+msgid "No fields changed."
+msgstr "La iha kampu ne'ebé troka."
+
+msgid "None"
+msgstr "La iha"
+
+msgid "Hold down “Control”, or “Command” on a Mac, to select more than one."
+msgstr ""
+"Koi “Control”, ka “Command” iha Mac, atu hili buat liu hosi ida."
+
+msgid "Select this object for an action - {}"
+msgstr "Hili objetu ida-ne'e ba asaun - {}"
+
+#, python-brace-format
+msgid "The {name} “{obj}” was added successfully."
+msgstr "{name} “{obj}” aumenta ho susesu."
+
+msgid "You may edit it again below."
+msgstr "Ita bele edita fali iha kraik."
+
+#, python-brace-format
+msgid ""
+"The {name} “{obj}” was added successfully. You may add another {name} below."
+msgstr ""
+"{name} “{obj}” aumenta ho susesu. Ita bele aumenta {name} seluk iha kraik."
+
+#, python-brace-format
+msgid ""
+"The {name} “{obj}” was changed successfully. You may edit it again below."
+msgstr ""
+"{name} “{obj}” troka ho susesu. Ita bele edita fali iha kraik."
+
+#, python-brace-format
+msgid ""
+"The {name} “{obj}” was changed successfully. You may add another {name} "
+"below."
+msgstr ""
+"{name} “{obj}” troka ho susesu. Ita bele aumenta {name} seluk iha kraik."
+
+#, python-brace-format
+msgid "The {name} “{obj}” was changed successfully."
+msgstr "{name} “{obj}” troka ho susesu."
+
+msgid ""
+"Items must be selected in order to perform actions on them. No items have "
+"been changed."
+msgstr ""
+"Item sira tenke hili liu-husi atu halo asaun. La iha item ne'ebé troka."
+
+msgid "No action selected."
+msgstr "La hili asaun ida."
+
+#, python-format
+msgid "The %(name)s “%(obj)s” was deleted successfully."
+msgstr "Hamoos %(name)s “%(obj)s” ho susesu."
+
+#, python-format
+msgid "%(name)s with ID “%(key)s” doesn’t exist. Perhaps it was deleted?"
+msgstr "%(name)s ho ID “%(key)s” la iha. Karik hamoos ona?"
+
+#, python-format
+msgid "Add %s"
+msgstr "Aumenta %s"
+
+#, python-format
+msgid "Change %s"
+msgstr "Troka %s"
+
+#, python-format
+msgid "View %s"
+msgstr "Haree %s"
+
+msgid "Database error"
+msgstr "Erru baze-dadus"
+
+#, python-format
+msgid "%(count)s %(name)s was changed successfully."
+msgid_plural "%(count)s %(name)s were changed successfully."
+msgstr[0] "%(count)s %(name)s troka ho susesu."
+msgstr[1] "%(count)s %(name)s sira troka ho susesu."
+
+#, python-format
+msgid "%(total_count)s selected"
+msgid_plural "All %(total_count)s selected"
+msgstr[0] "%(total_count)s hili"
+msgstr[1] "Hotu %(total_count)s hili"
+
+#, python-format
+msgid "0 of %(cnt)s selected"
+msgstr "0 husi %(cnt)s hili"
+
+msgid "Delete"
+msgstr "Hamoos"
+
+#, python-format
+msgid "Change history: %s"
+msgstr "Istória troka: %s"
+
+#. Translators: Model verbose name and instance
+#. representation, suitable to be an item in a
+#. list.
+#, python-format
+msgid "%(class_name)s %(instance)s"
+msgstr "%(class_name)s %(instance)s"
+
+#, python-format
+msgid ""
+"Deleting %(class_name)s %(instance)s would require deleting the following "
+"protected related objects: %(related_objects)s"
+msgstr ""
+"Hamosaun %(class_name)s %(instance)s tenke hamoos mos objetu protejidu sira "
+"tuir mai: %(related_objects)s"
+
+msgid "Django site admin"
+msgstr "Admin sítio Django"
+
+msgid "Django administration"
+msgstr "Administrasaun Django"
+
+msgid "Site administration"
+msgstr "Administrasaun sítio"
+
+msgid "Log in"
+msgstr "Tama"
+
+#, python-format
+msgid "%(app)s administration"
+msgstr "Administrasaun %(app)s"
+
+msgid "Page not found"
+msgstr "Pájina la hetan"
+
+msgid "We’re sorry, but the requested page could not be found."
+msgstr "Deskupa, pájina ne'ebé ita husu la hetan."
+
+msgid "Home"
+msgstr "Inisiu"
+
+msgid "Server error"
+msgstr "Erru servidor"
+
+msgid "Server error (500)"
+msgstr "Erru servidor (500)"
+
+msgid "Server Error <em>(500)</em>"
+msgstr "Erru Servidor <em>(500)</em>"
+
+msgid ""
+"There’s been an error. It’s been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+"Iha erru ida. Fó-sai informasaun ba administradór sítio liuhosi email no "
+"sei hadia kedas. Obrigadu ba paciénsia."
+
+msgid "Run the selected action"
+msgstr "Halo asaun ne'ebé hili"
+
+msgid "Go"
+msgstr "Bá"
+
+msgid "Click here to select the objects across all pages"
+msgstr "Klik iha ne'e atu hili objetu sira iha pájina hotu-hotu"
+
+#, python-format
+msgid "Select all %(total_count)s %(module_name)s"
+msgstr "Hili hotu %(total_count)s %(module_name)s"
+
+msgid "Clear selection"
+msgstr "Hamoos seleksaun"
+
+msgid "Breadcrumbs"
+msgstr "Korda-lalan"
+
+#, python-format
+msgid "Models in the %(name)s application"
+msgstr "Modelu sira iha aplikasaun %(name)s"
+
+msgid "Model name"
+msgstr "Naran modelu"
+
+msgid "Add link"
+msgstr "Aumenta ligasaun"
+
+msgid "Change or view list link"
+msgstr "Troka ka haree ligasaun lista"
+
+msgid "Add"
+msgstr "Aumenta"
+
+msgid "View"
+msgstr "Haree"
+
+msgid "You don’t have permission to view or edit anything."
+msgstr "Ita la iha permisaun atu haree ka edita buat ruma."
+
+msgid "After you’ve created a user, you’ll be able to edit more user options."
+msgstr ""
+"De'pois ita kria uzuáriu, ita bele edita opsaun uzuáriu barak liu."
+
+msgid "Error:"
+msgstr "Erru:"
+
+msgid "Change password"
+msgstr "Troka senha"
+
+msgid "Set password"
+msgstr "Tau senha"
+
+msgid "Please correct the error below."
+msgid_plural "Please correct the errors below."
+msgstr[0] "Favór hadia erru iha kraik."
+msgstr[1] "Favór hadia erru sira iha kraik."
+
+#, python-format
+msgid "Enter a new password for the user <strong>%(username)s</strong>."
+msgstr "Hatama senha foun ba uzuáriu <strong>%(username)s</strong>."
+
+msgid ""
+"This action will <strong>enable</strong> password-based authentication for "
+"this user."
+msgstr ""
+"Asaun ida-ne'e sei <strong>ativa</strong> autentikasaun tuir senha ba "
+"uzuáriu ida-ne'e."
+
+msgid "Disable password-based authentication"
+msgstr "Desativa autentikasaun tuir senha"
+
+msgid "Enable password-based authentication"
+msgstr "Ativa autentikasaun tuir senha"
+
+msgid "Skip to main content"
+msgstr "Loke diretu ba kontéudu prinsipal"
+
+msgid "Welcome,"
+msgstr "Bem-vindu,"
+
+msgid "View site"
+msgstr "Haree sítio"
+
+msgid "Documentation"
+msgstr "Dokumentasaun"
+
+msgid "Log out"
+msgstr "Sai"
+
+#, python-format
+msgid "Add %(name)s"
+msgstr "Aumenta %(name)s"
+
+msgid "History"
+msgstr "Istória"
+
+msgid "View on site"
+msgstr "Haree iha sítio"
+
+msgid "Filter"
+msgstr "Filtra"
+
+msgid "Hide counts"
+msgstr "Subar númeru"
+
+msgid "Show counts"
+msgstr "Hatudu númeru"
+
+msgid "Clear all filters"
+msgstr "Hamoos filtros hotu"
+
+msgid "Remove from sorting"
+msgstr "Hasai husi ordenasaun"
+
+#, python-format
+msgid "Sorting priority: %(priority_number)s"
+msgstr "Prioridade ordenasaun: %(priority_number)s"
+
+msgid "Toggle sorting"
+msgstr "Troka ordenasaun"
+
+msgid "Toggle theme (current theme: auto)"
+msgstr "Troka téma (téma agora: auto)"
+
+msgid "Toggle theme (current theme: light)"
+msgstr "Troka téma (téma agora: klaru)"
+
+msgid "Toggle theme (current theme: dark)"
+msgstr "Troka téma (téma agora: nakukun)"
+
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would result in deleting "
+"related objects, but your account doesn't have permission to delete the "
+"following types of objects:"
+msgstr ""
+"Hamosaun %(object_name)s '%(escaped_object)s' sei hamoos mos objetu sira "
+"ne'ebé relate, maibé ita nia konta la iha permisaun atu hamoos tipu objetu "
+"tuir mai:"
+
+#, python-format
+msgid ""
+"Deleting the %(object_name)s '%(escaped_object)s' would require deleting the "
+"following protected related objects:"
+msgstr ""
+"Hamosaun %(object_name)s '%(escaped_object)s' tenke hamoos mos objetu "
+"relasionadu ne'ebé protejidu tuir mai:"
+
+#, python-format
+msgid ""
+"Are you sure you want to delete the %(object_name)s \"%(escaped_object)s\"? "
+"All of the following related items will be deleted:"
+msgstr ""
+"Ita serteza hakarak hamoos %(object_name)s \"%(escaped_object)s\"? Item sira "
+"ne'ebé relate tuir mai hotu sei hamoos:"
+
+msgid "Objects"
+msgstr "Objektu sira"
+
+msgid "Yes, I’m sure"
+msgstr "Sin, hau serteza"
+
+msgid "No, take me back"
+msgstr "Lae, fila fali"
+
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would result in deleting related "
+"objects, but your account doesn't have permission to delete the following "
+"types of objects:"
+msgstr ""
+"Hamosaun %(objects_name)s ne'ebé hili sei hamoos mos objetu sira ne'ebé "
+"relate, maibé ita nia konta la iha permisaun atu hamoos tipu tuir mai:"
+
+#, python-format
+msgid ""
+"Deleting the selected %(objects_name)s would require deleting the following "
+"protected related objects:"
+msgstr ""
+"Hamosaun %(objects_name)s ne'ebé hili tenke hamoos mos objetu relasionadu "
+"ne'ebé protejidu tuir mai:"
+
+#, python-format
+msgid ""
+"Are you sure you want to delete the selected %(objects_name)s? All of the "
+"following objects and their related items will be deleted:"
+msgstr ""
+"Ita serteza hakarak hamoos %(objects_name)s ne'ebé hili? Objetu sira tuir "
+"mai no buat sira ne'ebé relate hotu sei hamoos:"
+
+msgid "Delete?"
+msgstr "Hamoos?"
+
+#, python-format
+msgid " By %(filter_title)s "
+msgstr " Tuir %(filter_title)s "
+
+msgid "Summary"
+msgstr "Sumáriu"
+
+msgid "Recent actions"
+msgstr "Asaun sira foun-liu"
+
+msgid "My actions"
+msgstr "Hau nia asaun"
+
+msgid "None available"
+msgstr "La iha disponivel"
+
+msgid "Added:"
+msgstr "Aumenta:"
+
+msgid "Changed:"
+msgstr "Troka:"
+
+msgid "Deleted:"
+msgstr "Hamoos:"
+
+msgid "Unknown content"
+msgstr "Konteúdu la hatene"
+
+msgid ""
+"Something’s wrong with your database installation. Make sure the appropriate "
+"database tables have been created, and make sure the database is readable by "
+"the appropriate user."
+msgstr ""
+"Iha problema ho instalasaun baze-dadus. Hakarak asegura katak tabela sira "
+"los kria ona no baze-dadus bele le'e husi uzuáriu ne'ebé loos."
+
+#, python-format
+msgid ""
+"You are authenticated as %(username)s, but are not authorized to access this "
+"page. Would you like to login to a different account?"
+msgstr ""
+"Ita autentika hanesan %(username)s, maibé la autorizadu atu asesu pájina "
+"ida-ne'e. Ita hakarak tama ho konta seluk?"
+
+msgid "Forgotten your login credentials?"
+msgstr "Haluhan ita nia kredensiál tama?"
+
+msgid "Toggle navigation"
+msgstr "Troka navegasaun"
+
+msgid "Sidebar"
+msgstr "Sidebar"
+
+msgid "Start typing to filter…"
+msgstr "Hahu hakerek atu filtra…"
+
+msgid "Filter navigation items"
+msgstr "Filtra item navegasaun"
+
+msgid "Date/time"
+msgstr "Data/Oras"
+
+msgid "User"
+msgstr "Uzuáriu"
+
+msgid "Action"
+msgstr "Asaun"
+
+msgid "entry"
+msgid_plural "entries"
+msgstr[0] "entrada"
+msgstr[1] "entrada sira"
+
+msgid ""
+"This object doesn’t have a change history. It probably wasn’t added via this "
+"admin site."
+msgstr ""
+"Objektu ida-ne'e la iha istória troka. Karik la hatama liu hosi admin "
+"ida-ne'e."
+
+msgid "Show all"
+msgstr "Hatudu hotu"
+
+msgid "Save"
+msgstr "Salva"
+
+msgid "Popup closing…"
+msgstr "Popup taka hela…"
+
+msgid "Search"
+msgstr "Buka"
+
+#, python-format
+msgid "%(counter)s result"
+msgid_plural "%(counter)s results"
+msgstr[0] "%(counter)s rezultadu"
+msgstr[1] "%(counter)s rezultadu sira"
+
+#, python-format
+msgid "%(full_result_count)s total"
+msgstr "total %(full_result_count)s"
+
+msgid "Save as new"
+msgstr "Salva hanesan foun"
+
+msgid "Save and add another"
+msgstr "Salva no aumenta tan"
+
+msgid "Save and continue editing"
+msgstr "Salva no kontinua edita"
+
+msgid "Save and view"
+msgstr "Salva no haree"
+
+msgid "Close"
+msgstr "Taka"
+
+#, python-format
+msgid "Change selected %(model)s"
+msgstr "Troka %(model)s ne'ebé hili"
+
+#, python-format
+msgid "Add another %(model)s"
+msgstr "Aumenta %(model)s seluk"
+
+#, python-format
+msgid "Delete selected %(model)s"
+msgstr "Hamoos %(model)s ne'ebé hili"
+
+#, python-format
+msgid "View selected %(model)s"
+msgstr "Haree %(model)s ne'ebé hili"
+
+msgid "Thanks for spending some quality time with the web site today."
+msgstr "Obrigadu tanba tempu di'ak ho sítio ohin."
+
+msgid "Log in again"
+msgstr "Tama fali"
+
+msgid "Password change"
+msgstr "Troka senha"
+
+msgid "Your password was changed."
+msgstr "Ita nia senha troka ona."
+
+msgid ""
+"Please enter your old password, for security’s sake, and then enter your new "
+"password twice so we can verify you typed it in correctly."
+msgstr ""
+"Favór hatama ita nia senha tuan (seguransa), depois hatama senha foun dala "
+"rua atu verifika loos."
+
+msgid "Change my password"
+msgstr "Troka hau nia senha"
+
+msgid "Password reset"
+msgstr "Reset senha"
+
+msgid "Your password has been set.  You may go ahead and log in now."
+msgstr "Ita nia senha hatama ona. Bele tama agora."
+
+msgid "Password reset confirmation"
+msgstr "Konfirmasaun reset senha"
+
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Favór hatama senha foun dala rua atu ita bele verifika katak hatama ho loos."
+
+msgid "New password:"
+msgstr "Senha foun:"
+
+msgid "Confirm password:"
+msgstr "Konfirma senha:"
+
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Ligasaun reset senha la válido, karik uza tiha ona. Favór husu reset senha "
+"foun."
+
+msgid ""
+"We’ve emailed you instructions for setting your password, if an account "
+"exists with the email you entered. You should receive them shortly."
+msgstr ""
+"Ami haruka ona instrusaun liuhosi email atu tau ita nia senha, se iha konta "
+"ho email ne'ebé ita hatama. Tenke simu kedas."
+
+msgid ""
+"If you don’t receive an email, please make sure you’ve entered the address "
+"you registered with, and check your spam folder."
+msgstr ""
+"Se la simu email, favór asegura ita hatama adresu ne'ebé rejistu ho nia no "
+"verifika pasta spam."
+
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+"Ita simu email ida-ne'e tanba husu reset senha ba ita nia konta uzuáriu iha "
+"%(site_name)s."
+
+msgid "Please go to the following page and choose a new password:"
+msgstr "Favór bá pájina tuir mai no hili senha foun:"
+
+msgid "In case you’ve forgotten, you are:"
+msgstr "Se ita haluha, ita mak:"
+
+msgid "Thanks for using our site!"
+msgstr "Obrigadu tanba uza ami nia sítio!"
+
+#, python-format
+msgid "The %(site_name)s team"
+msgstr "Ekipa %(site_name)s"
+
+msgid ""
+"Forgotten your password? Enter your email address below, and we’ll email "
+"instructions for setting a new one."
+msgstr ""
+"Haluha ita nia senha? Hatama adresu email iha kraik, no ami sei haruka "
+"instrusaun atu tau foun."
+
+msgid "Email address:"
+msgstr "Adresu email:"
+
+msgid "Reset my password"
+msgstr "Reset hau nia senha"
+
+msgid "Select all objects on this page for an action"
+msgstr "Hili objetu hotu iha pájina ida-ne'e ba asaun"
+
+msgid "All dates"
+msgstr "Data hotu"
+
+#, python-format
+msgid "Select %s"
+msgstr "Hili %s"
+
+#, python-format
+msgid "Select %s to change"
+msgstr "Hili %s atu troka"
+
+#, python-format
+msgid "Select %s to view"
+msgstr "Hili %s atu haree"
+
+msgid "Date:"
+msgstr "Data:"
+
+msgid "Time:"
+msgstr "Oras:"
+
+msgid "Lookup"
+msgstr "Buka"
+
+msgid "Currently:"
+msgstr "Agora:"
+
+msgid "Change:"
+msgstr "Troka:"

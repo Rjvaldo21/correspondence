@@ -1,0 +1,32 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<!-- {% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %} -->
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="mb-0">Detalle Karta Sai</h2>
+    <a href="{% url 'admin_home' %}" class="btn btn-outline-secondary">Dashboard</a>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">Numeru</dt><dd class="col-sm-9"><code>{{ object.number|default:"—" }}</code></dd>
+        <dt class="col-sm-3">Assunto</dt><dd class="col-sm-9">{{ object.subject }}</dd>
+        <dt class="col-sm-3">Status</dt><dd class="col-sm-9"><span class="badge bg-secondary">{{ object.status }}</span></dd>
+      </dl>
+      <div class="mt-2">
+        <form method="post" action="{% url 'admin_outgoing_set_status' object.pk %}">
+          {% csrf_token %}
+          <div class="btn-group">
+            <button name="status" value="REVIEW" class="btn btn-outline-secondary">REVIEW</button>
+            <button name="status" value="APPROVED" class="btn btn-outline-info">APPROVED</button>
+            <button name="status" value="FINAL" class="btn btn-outline-primary">FINAL</button>
+            <button name="status" value="SENT" class="btn btn-outline-success">SENT</button>
+            <button name="status" value="ARCH" class="btn btn-outline-dark">ARCH</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

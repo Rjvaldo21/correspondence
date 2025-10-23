@@ -1,0 +1,22 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<!-- {% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %} -->
+<div class="container-fluid">
+  <div class="d-flex align-items-center justify-content-between mb-3">
+    <h2 class="mb-0">Detalle Karta Tama</h2>
+    <a href="{% url 'admin_home' %}" class="btn btn-outline-secondary">Dashboard</a>
+  </div>
+
+  <div class="card mb-3">
+    <div class="card-body">
+      <dl class="row">
+        <dt class="col-sm-3">Agenda</dt><dd class="col-sm-9"><code>{{ object.agenda_number|default:"—" }}</code></dd>
+        <dt class="col-sm-3">Assunto</dt><dd class="col-sm-9">{{ object.subject }}</dd>
+        <dt class="col-sm-3">Orijen</dt><dd class="col-sm-9">{{ object.origin }} ({{ object.origin_number }})</dd>
+        <dt class="col-sm-3">Data Orijen</dt><dd class="col-sm-9">{{ object.origin_date }}</dd>
+        <dt class="col-sm-3">Status</dt><dd class="col-sm-9"><span class="badge bg-secondary">{{ object.status }}</span></dd>
+      </dl>
+    </div>
+  </div>
+</div>
+{% endblock %}
