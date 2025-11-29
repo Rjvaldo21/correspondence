@@ -528,3 +528,852 @@ fieldset.collapse{
   border:1px dashed var(--border); border-radius:12px; background:rgba(2,6,23,.02);
 }
 fieldset.collapse > h2{ cursor:pointer; }
+
+.card-body {
+  overflow-y: auto !important;
+}
+
+.js-inline-admin-formset {
+  overflow: auto !important;
+}
+
+
+/* updated mobile responsive */
+@media (max-width: 768px) {
+  #jazzy-navbar .navbar-nav {
+    padding-left: 0 !important;
+  }
+
+  .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/outgoingletter/"]::before, .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/outgoingletter/"]::before {
+    grid-column: span 2 / span 2 !important;
+    padding-bottom: 10px !important;
+  }
+
+  .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/grupu/"]::before, .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/grupu/"]::before {
+    grid-column: span 2 / span 2 !important;
+    padding-bottom: 10px !important;
+  }
+
+  .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/core/classificationtag/"]::before, .main-sidebar .nav-sidebar .nav-item a.nav-link[href*="/admin/persuratan/classificationtag/"]::before {
+    grid-column: span 2 / span 2 !important;
+    padding-bottom: 10px !important;
+  }
+  
+  .content .col-12.col-md-auto.d-flex {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  .content .col-12.col-md-auto.d-flex h1 {
+    border-right: none !important;
+    margin-right: 0 !important;
+    padding-right: 0 !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .content .breadcrumb {
+    margin-top: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .content .breadcrumb-item {
+    font-size: 0.9rem !important;
+  }
+
+  .content-wrapper>.content {
+    padding: 1rem 0.5rem !important;
+  }
+
+  body.change-form .card .p-5 {
+    padding: 2rem !important;
+  }
+
+  .select2-container {
+    max-width: 100% !important;
+  }
+
+  .modal.modal-wide .modal-dialog {
+  width: 97% !important;
+}
+
+
+  #id_scan_pdf {
+    width: 100% !important;
+  }
+  
+  #id_signed_pdf {
+    width: 100% !important;
+  }
+
+  .selector {
+    flex-wrap: wrap;
+    gap: 0px !important;
+  }
+
+  .page-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  #changelist-search.form-inline {
+    display: block !important;
+  }
+
+  #search_group.form-group {
+    float: right;
+  }
+
+  .selector ul.selector-chooser {
+    margin: 0px !important;
+  }
+}
+
+/* --- Fix for broken horizontal filter boxes in Jazzmin 3.0.x + Django 5.x --- */
+.selector {
+  display: flex !important;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.selector > div {
+  flex: 1 1 48%;
+  min-width: 260px;
+}
+
+.selector .selector-available,
+.selector .selector-chosen {
+  background: var(--card-bg, #fff);
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 0.375rem;
+  padding: 0.75rem;
+}
+
+.selector .selector-filter {
+  margin-bottom: 0.5rem;
+}
+
+.selector ul.selector-chooser {
+  height: fit-content !important;
+}
+
+.selector select {
+  width: 100%;
+  max-height: 200px !important;
+  border-radius: 0.25rem;
+}
+
+
+.selector h2 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.selector .selector-chosen h2,
+.selector .selector-available h2 {
+  white-space: nowrap;
+}
+
+/* Ensure “Choose all” and “Remove all” buttons appear clearly below */
+.selector .selector-chooseall,
+.selector .selector-clearall {
+  margin-top: 0.5rem;
+  width: 100%;
+  text-align: center;
+}
+
+.selector-chooseall {
+  display:inline-flex; 
+  align-items:center; 
+  gap:8px; 
+  padding:5px 14px; 
+  border-radius:12px; 
+  font-weight:600;
+  justify-content: center;
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+  box-shadow: none !important;
+}
+
+.selector-clearall {
+  display:inline-flex; 
+  align-items:center; 
+  gap:8px; 
+  padding:5px 14px; 
+  border-radius:12px; 
+  font-weight:600;
+  justify-content: center;
+  background-color: #3498db;
+  border-color: #3498db;
+  color: white;
+  box-shadow: none !important;
+}
+
+.addlink {
+  float: left !important;
+}
+
+label[for="id_received_via"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/tamavia.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_priority"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/priority.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_origin"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/orijemkarta.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_origin_number"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/numero.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_origin_date"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/date.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_subject"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/asuntu.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+
+label[for="id_scan_pdf"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/scan.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_attachments"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lampiran.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_classification_tags"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/classfication.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_agenda_number"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/agenda.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_qr_preview"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/qr.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_status"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/estando.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_current_handler"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/response.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_created_by"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_quick_actions"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/fast.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_retention_class"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/class.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_disposed_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/archive.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_retention_until"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_letter"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/archive.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_sender"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_note"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_due_date"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/date.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_allow_parallel"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/check.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_parent"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/orijemkarta.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_disposition"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_assignee"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_read_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lampiran.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_completed_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/date.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_doc_type"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/book.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_title"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_file"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lampiran.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_author"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/asuntu.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_template_type"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/layout.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_body"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/booktext.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_number"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/orijemkarta.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_signed_pdf"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/book.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_order"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/order.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_reviewer"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/asuntu.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_approved_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/date.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_destination"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/class.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_content_type"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/classfication.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_object_id"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_method"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/check.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_received_by"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_received_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_proof_file"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/book.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_name"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/response.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_uploaded_by"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_permissions"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/fast.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+
+label[for="id_permissions"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/fast.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_username"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/name.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_usable_password"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/password.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_password1"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lock.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_password2"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lock.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_tipu_konteúdu_id"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/file.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_objetu_id"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/archive.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_reason"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/book.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_approved_by"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/rejista.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_destroyed_at"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/date.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+label[for="id_document"]::before {
+  content: "";
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  background: url("/static/core/img/icons/lampiran.svg") no-repeat center center;
+  background-size: contain;
+  margin-right: 5px;
+  vertical-align: middle;
+}

@@ -20,12 +20,13 @@ SECRET_KEY = 'django-insecure-%k@i9xxuzc5_5tgx$pd-vkl2w!e)-*ct5po!hs4hn&v!%v3x+o
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost", "192.168.1.7"]
 
 # (Optional Dev) If you access via a browser app/proxy
 CSRF_TRUSTED_ORIGINS = [
     "http://127.0.0.1:8000",
     "http://localhost:8000",
+    "http://192.168.1.7:8000"
 ]
 
 # Application definition
@@ -71,6 +72,8 @@ PUBLIC_VERIFY_BASE = "/verify/"
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+X_FRAME_OPTIONS = 'SAMEORIGIN'
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
