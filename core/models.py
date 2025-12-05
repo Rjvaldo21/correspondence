@@ -31,35 +31,34 @@ def upload_attachment_file(instance, filename):
 
 # ---------- Choice constants (Tetun/PT) ----------
 PRIORITY = (
-    ("B",  "Básiku / Normal"),
-    ("S",  "Urjente / Urgente"),
-    ("SS", "Muitu Urjente / Muito Urgente"),
+    ("B",  "Normal"),
+    ("S",  "Urgente"),
+    ("SS", "Muito Urgente"),
 )
 
 LETTER_STATUS = (
-    ("DRAFT", "Rascunhu"),
+    ("DRAFT", "Draft"),
     ("REG",   "Rejistu"),
-    ("DISP",  "Dispozisaun"),
-    ("PROG",  "Iha Prosesu / Em Progresso"),
-    ("DONE",  "Remata / Finaliza"),
-    ("ARCH",  "Arkivu / Arquivo"),
+    ("PROG",  "Iha Prosesu"),
+    ("DONE",  "Remata"),
+    ("ARCH",  "Arkivu"),
 )
 
 OUT_STATUS = (
-    ("DRAFT",    "Rascunhu"),
-    ("REVIEW",   "Revizaun / Paraf"),
-    ("APPROVED", "Aprovadu / Aprovado"),
-    ("FINAL",    "Final (Númeru Rai)"),
-    ("SENT",     "Manda / Enviado"),
-    ("ARCH",     "Arkivu / Arquivo"),
+    ("DRAFT",    "Draft"),
+    ("APPROVED", "Aprovadu"),
+    ("FINAL",    "Final"),
+    ("SENT",     "Manda Ona"),
+    ("ARCH",     "Arkivu"),
 )
+
 
 DOC_KIND = (
     ("ND", "Nota Servisu"),
-    ("UD", "Konvite / Convite"),
-    ("ST", "Karta Servisu / Ofício"),
+    ("UD", "Konvite"),
+    ("ST", "Karta Servisu"),
     ("MM", "Memo"),
-    ("LN", "Seluk / Outro"),
+    ("LN", "Seluk"),
 )
 
 RECEIVED_VIA = (
@@ -96,10 +95,10 @@ class Attachment(models.Model):
 # ---------- Karta Tama ----------
 class IncomingLetter(models.Model):
     received_via = models.CharField("Tama via", max_length=10, choices=RECEIVED_VIA, default="fisik")
-    origin = models.CharField("Oríjém Karta", max_length=255)
-    origin_number = models.CharField("Númeru Oríjém", max_length=100)
-    origin_date = models.DateField("Data Karta Oríjém")
-    subject = models.CharField("Asuntu / Assunto", max_length=300)
+    origin = models.CharField("Karta Husi", max_length=255)
+    origin_number = models.CharField("Númeru Karta", max_length=100)
+    origin_date = models.DateField("Data Karta")
+    subject = models.CharField("Asuntu", max_length=300)
     priority = models.CharField("Prioridade", max_length=2, choices=PRIORITY, default="B")
 
     attachments = models.ManyToManyField(Attachment, verbose_name="Anexu", blank=True)
@@ -172,7 +171,7 @@ class DispositionAssignment(models.Model):
     completed_at = models.DateTimeField("Kompleta iha", null=True, blank=True)
     class Meta:
         verbose_name = "Distribuisaun Dispozisaun"
-        verbose_name_plural = "Distribuisaun"
+        verbose_name_plural = "Agenda"
         unique_together = ("disposition", "assignee")
         ordering = ["assignee__username"]
     def __str__(self): return f"{self.assignee} ← Dispo {self.disposition_id}"
@@ -192,9 +191,9 @@ class FollowUp(models.Model):
 
 # ---------- Karta Sai ----------
 class OutgoingLetter(models.Model):
-    template_type = models.CharField("Template / Formuláriu", max_length=2, choices=DOC_KIND, default="ND")
-    subject = models.CharField("Asuntu / Assunto", max_length=300)
-    body = models.TextField("Konteúdu / Korpu")
+    template_type = models.CharField("Formuláriu", max_length=2, choices=DOC_KIND, default="ND")
+    subject = models.CharField("Asuntu", max_length=300)
+    body = models.TextField("Konteúdu")
     attachments = models.ManyToManyField(Attachment, verbose_name="Anexu", blank=True)
 
     number = models.CharField(

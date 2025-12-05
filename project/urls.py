@@ -2,10 +2,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-from core import views as core_views  # <-- sudah ada
+from core import views as core_views  
 
 urlpatterns = [
-    path("admin/persuratan/", include("core.admin_urls")),
+    path("admin/karta/", include("core.admin_urls")),
     path("admin/", admin.site.urls),
 
     path("", include("core.urls")),

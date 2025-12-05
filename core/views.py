@@ -1,11 +1,11 @@
 from __future__ import annotations
 
+from django.utils import timezone
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView
-from django.urls import reverse_lazy
-from django.shortcuts import redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import (
@@ -14,12 +14,13 @@ from django.views.generic import (
 
 from .models import (
     IncomingLetter, Disposition, DispositionAssignment, FollowUp,
-    OutgoingLetter
+    OutgoingLetter,
 )
 from .forms import (
     IncomingLetterForm, OutgoingLetterForm,
-    DispositionForm, FollowUpForm
+    DispositionForm, FollowUpForm,
 )
+
 
 @login_required
 def ui_home(request):
@@ -221,3 +222,92 @@ class UILogin(LoginView):
 @login_required
 def ui_dashboard(request):
     return redirect("admin_home")    
+
+@login_required
+@permission_required("core.view_incomingletter", raise_exception=True)
+def incoming_detail_view(request, pk):
+    """
+    Halaman 'Detalhe Karta Tama' + blok Despacho & Tugas Dispozisaun.
+    """
+    letter = get_object_or_404(IncomingLetter, pk=pk)
+
+    # Semua Despacho untuk surat ini
+    dispositions = (
+        letter.dispositions
+        .select_related("sender")
+        .prefetch_related("assignments__assignee")
+        .order_by("-created_at")
+    )
+
+    # Semua tugas disposisi (assignment) untuk surat ini
+    assignments = (
+        DispositionAssignment.objects.filter(disposition__letter=letter)
+        .select_related("assignee", "disposition", "disposition__sender")
+        .order_by("assignee__username")
+    )
+
+    # --- Handle POST ---
+    if request.method == "POST":
+        # 1) Membuat Despacho baru dari modal
+        if "create_disposition" in request.POST:
+            form = DispositionForm(request.POST)
+            if form.is_valid():
+                dispo = form.save(commit=False)
+                dispo.letter = letter
+                dispo.sender = request.user
+                dispo.save()
+
+                assignees = form.cleaned_data.get("assignees")
+                for user in assignees:
+                    DispositionAssignment.objects.get_or_create(
+                        disposition=dispo,
+                        assignee=user,
+                    )
+
+                messages.success(request, "Despacho foun rejista tiha ona.")
+                return redirect(request.path)
+
+        # 2) Update status assignment (read / done)
+        elif "assignment_action" in request.POST:
+            assign_id = request.POST.get("assignment_id")
+            action = request.POST.get("assignment_action")
+
+            assignment = get_object_or_404(
+                DispositionAssignment,
+                pk=assign_id,
+                disposition__letter=letter,
+            )
+
+            # Opsional: hanya assignee atau superuser yang boleh update
+            if assignment.assignee != request.user and not request.user.is_superuser:
+                messages.error(request, "Ita la iha direitu atu troka tarefa ida-ne'e.")
+                return redirect(request.path)
+
+            if action == "mark_read" and assignment.read_at is None:
+                assignment.read_at = timezone.now()
+                assignment.save(update_fields=["read_at"])
+                messages.success(request, "Tarefa marka ona hanesan 'Lee'.")
+            elif action == "mark_done":
+                if assignment.read_at is None:
+                    assignment.read_at = timezone.now()
+                assignment.completed_at = timezone.now()
+                assignment.save(update_fields=["read_at", "completed_at"])
+                messages.success(request, "Tarefa marka ona hanesan 'Kompleta'.")
+
+            return redirect(request.path)
+
+        else:
+            form = DispositionForm(request.POST)  # fallback
+
+    else:
+        form = DispositionForm()
+
+    context = {
+        "object": letter,
+        "dispositions": dispositions,
+        "assignments": assignments,
+        "disposition_form": form,
+    }
+    return render(request, "admin/karta/incoming_detail.html", context)
+
+

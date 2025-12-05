@@ -1,7 +1,24 @@
-<!-- {% extends "admin/base_site.html" %}
+{% extends "admin/base_site.html" %}
+
+{# ➜ HILANGKAN SIDEBAR DI HALAMAN INI #}
+{% block bodyclass %}{{ block.super }} of-nosidebar{% endblock %}
 
 {% block extrastyle %}
 <style>
+  /* Override Jazzmin “oval fields” hanya di form Despacho */
+  #form-despacho textarea,
+  #form-despacho input,
+  #form-despacho select {
+    border-radius: 6px !important;      /* ubah oval → agak kotak */
+    padding: 8px 10px !important;
+    font-size: 0.95rem;
+  }
+
+  #form-despacho textarea {
+    min-height: 120px;
+  }
+
+  /* Kartu & tabel */
   .card-shadow {
     border: none;
     border-radius: 12px;
@@ -49,7 +66,7 @@
 
         <dt class="col-sm-3">Status</dt>
         <dd class="col-sm-9">
-          <span class="badge badge-secondary badge-status">
+          <span class="badge bg-secondary badge-status">
             {{ object.get_status_display|default:object.status }}
           </span>
         </dd>
@@ -65,8 +82,7 @@
           <h5 class="mb-0">Despacho ba Karta ida-ne'e</h5>
           <button type="button"
                   class="btn btn-sm btn-primary"
-                  data-toggle="modal"
-                  data-target="#dispositionModal">
+                  id="btn-show-despacho">
             + Despacho foun
           </button>
         </div>
@@ -154,17 +170,17 @@
                         {% if a.read_at %}
                           {{ a.read_at|date:"d/m/Y H:i" }}
                         {% else %}
-                          <span class="badge badge-warning badge-status">Seidauk</span>
+                          <span class="badge bg-warning text-dark badge-status">Seidauk</span>
                         {% endif %}
                       </td>
                       <td>
                         {% if a.completed_at %}
                           {{ a.completed_at|date:"d/m/Y H:i" }}
                         {% else %}
-                          <span class="badge badge-secondary badge-status">Iha prosesu</span>
+                          <span class="badge bg-secondary badge-status">Iha prosesu</span>
                         {% endif %}
                       </td>
-                      <td class="text-right">
+                      <td class="text-end">
                         <form method="post" class="d-inline">
                           {% csrf_token %}
                           <input type="hidden" name="assignment_id" value="{{ a.id }}">
@@ -193,65 +209,59 @@
       </div>
     </div>
   </div>
-</div>
 
-{# =================== MODAL: FORM DESPACHO FOUN =================== #}
-<div class="modal fade" id="dispositionModal" tabindex="-1" role="dialog"
-     aria-labelledby="dispositionModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
-    <div class="modal-content">
+  {# =================== FORM DESPACHO FOUN (INLINE + TOGGLE) =================== #}
+  <hr class="mt-4">
+
+  <div id="form-despacho" class="card card-shadow mt-3" style="display: none;">
+    <div class="card-header">
+      <h5 class="mb-0">
+        Despacho foun ba: {{ object.agenda_number|default:"(tanpa número)" }}
+      </h5>
+    </div>
+    <div class="card-body">
       <form method="post">
         {% csrf_token %}
         <input type="hidden" name="create_disposition" value="1">
-        <div class="modal-header">
-          <h5 class="modal-title" id="dispositionModalLabel">
-            Despacho foun ba: {{ object.agenda_number|default:"(tanpa número)" }}
-          </h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="mb-3">
-            <label class="form-label">{{ disposition_form.note.label }}</label>
-            {{ disposition_form.note }}
-            {% if disposition_form.note.errors %}
-              <div class="text-danger small">{{ disposition_form.note.errors }}</div>
-            {% endif %}
-          </div>
-          <div class="row">
-            <div class="col-md-4 mb-3">
-              <label class="form-label">{{ disposition_form.due_date.label }}</label>
-              {{ disposition_form.due_date }}
-              {% if disposition_form.due_date.errors %}
-                <div class="text-danger small">{{ disposition_form.due_date.errors }}</div>
-              {% endif %}
-            </div>
-            <div class="col-md-4 mb-3 d-flex align-items-center">
-              <div class="form-check mt-4">
-                {{ disposition_form.allow_parallel }}
-                <label class="form-check-label">
-                  {{ disposition_form.allow_parallel.label }}
-                </label>
-              </div>
-            </div>
-          </div>
 
-          <div class="mb-3">
-            <label class="form-label">{{ disposition_form.assignees.label }}</label>
-            {{ disposition_form.assignees }}
-            <small class="form-text text-muted">
-              Tahan <kbd>Ctrl</kbd> / <kbd>Cmd</kbd> atu hili responsavel barak.
-            </small>
-            {% if disposition_form.assignees.errors %}
-              <div class="text-danger small">{{ disposition_form.assignees.errors }}</div>
+        <div class="mb-3">
+          <label class="form-label">{{ disposition_form.note.label }}</label>
+          {{ disposition_form.note }}
+          {% if disposition_form.note.errors %}
+            <div class="text-danger small">{{ disposition_form.note.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label">{{ disposition_form.due_date.label }}</label>
+            {{ disposition_form.due_date }}
+            {% if disposition_form.due_date.errors %}
+              <div class="text-danger small">{{ disposition_form.due_date.errors }}</div>
             {% endif %}
           </div>
+          <div class="col-md-4 mb-3 d-flex align-items-center">
+            <div class="form-check mt-4">
+              {{ disposition_form.allow_parallel }}
+              <label class="form-check-label">
+                {{ disposition_form.allow_parallel.label }}
+              </label>
+            </div>
+          </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
-            Kansela
-          </button>
+
+        <div class="mb-3">
+          <label class="form-label">{{ disposition_form.assignees.label }}</label>
+          {{ disposition_form.assignees }}
+          <small class="form-text text-muted">
+            Tahan <kbd>Ctrl</kbd> / <kbd>Cmd</kbd> atu hili responsavel barak.
+          </small>
+          {% if disposition_form.assignees.errors %}
+            <div class="text-danger small">{{ disposition_form.assignees.errors }}</div>
+          {% endif %}
+        </div>
+
+        <div class="text-end">
           <button type="submit" class="btn btn-primary">
             Rai Despacho
           </button>
@@ -260,4 +270,23 @@
     </div>
   </div>
 </div>
-{% endblock %} -->
+
+<script>
+  // Toggle tampil/sembunyi form Despacho tanpa modal
+  document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("btn-show-despacho");
+    var box = document.getElementById("form-despacho");
+    if (btn && box) {
+      btn.addEventListener("click", function (e) {
+        e.preventDefault();
+        if (box.style.display === "none" || box.style.display === "") {
+          box.style.display = "block";
+          box.scrollIntoView({behavior: "smooth", block: "start"});
+        } else {
+          box.style.display = "none";
+        }
+      });
+    }
+  });
+</script>
+{% endblock %}

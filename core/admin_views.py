@@ -5,9 +5,10 @@ from django.contrib import messages
 
 from .models import IncomingLetter, OutgoingLetter
 from .views import (
-    IncomingCreate, IncomingUpdate, IncomingDetail,
-    DispositionCreate, FollowUpCreate,
-    OutgoingCreate, OutgoingUpdate, OutgoingDetail, OutgoingSetStatus,
+    IncomingList, IncomingCreate, IncomingUpdate, IncomingDetail,
+    # DispositionCreate,   # ⬅️ JANGAN DIIMPORT LAGI
+    FollowUpCreate,
+    OutgoingList, OutgoingCreate, OutgoingUpdate, OutgoingDetail,
 )
 
 # ========== DASHBOARD ==========
@@ -67,12 +68,12 @@ class AdminIncomingDetail(IncomingDetail):
         return ["incoming/detail.html", "admin/incoming/detail.html"]
 
 
-class AdminDispositionCreate(DispositionCreate):
-    template_name = "incoming/detail.html"
-    def get_template_names(self):
-        return ["incoming/detail.html", "admin/incoming/detail.html"]
-    def get_success_url(self):
-        return reverse_lazy("admin_home")
+# class AdminDispositionCreate(DispositionCreate):
+#     template_name = "incoming/detail.html"
+#     def get_template_names(self):
+#         return ["incoming/detail.html", "admin/incoming/detail.html"]
+#     def get_success_url(self):
+#         return reverse_lazy("admin_home")
 
 class AdminFollowUpCreate(FollowUpCreate):
     template_name = "incoming/detail.html"

@@ -249,7 +249,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='incomingletter',
             name='origin',
-            field=models.CharField(max_length=255, verbose_name='Oríjém Karta'),
+            field=models.CharField(max_length=255, verbose_name='Karta Husi'),
         ),
         migrations.AlterField(
             model_name='incomingletter',
@@ -299,7 +299,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='incomingletter',
             name='subject',
-            field=models.CharField(max_length=300, verbose_name='Asuntu / Assunto'),
+            field=models.CharField(max_length=300, verbose_name='Asuntu'),
         ),
         migrations.AlterField(
             model_name='incomingletter',
@@ -314,7 +314,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='outgoingletter',
             name='body',
-            field=models.TextField(verbose_name='Konteúdu / Korpu'),
+            field=models.TextField(verbose_name='Konteúdu'),
         ),
         migrations.AlterField(
             model_name='outgoingletter',
